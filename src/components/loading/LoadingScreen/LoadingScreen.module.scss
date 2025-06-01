@@ -1,0 +1,18 @@
+.wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  z-index: 1;
+
+  .text {
+    font-size: 7rem;
+    font-weight: 700;
+    color: #171717;
+    position: relative;
+    z-index: 1;
+  }
+}
