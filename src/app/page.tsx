@@ -3,10 +3,22 @@ import LoadingScreen from "@/components/loading/LoadingScreen/LoadingScreen";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Hero from "./_components/Hero/Hero";
+import RotatingLogo from "@/components/3d/RotatingLogo/RotatingLogo";
+import BackgroundBlur from "@/components/layout/BackgroundBlur/BackgroundBlur";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFadeout, setIsFadeout] = useState(false);
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsFadeout(true);
@@ -32,7 +44,9 @@ export default function Home() {
             isLoading ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
           }`}
       >
-        <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start relative z-0">
+          <BackgroundBlur />
+          <RotatingLogo />
           <Hero />
         </main>
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">

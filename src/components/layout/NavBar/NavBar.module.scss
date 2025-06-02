@@ -7,8 +7,7 @@
   flex-direction: row-reverse;
   height: 4rem;
   color: #00000080;
-  z-index: 1;
-  font-size: 1.25rem;
+  z-index: 2;
   font-weight: 500;
 
   .center-nav {
@@ -25,6 +24,7 @@
       font-size: 1.2rem;
       text-decoration: none;
       color: var(--text-color);
+      font-size: 1.25rem;
     }
 
     .logo {
@@ -37,5 +37,6 @@
     display: flex;
     align-items: center;
     height: 100%;
+    font-size: 1.25rem;
   }
 }
