@@ -1,0 +1,43 @@
+.wrapper {
+  background-color: rgb(229, 223, 219);
+  min-height: 100vh;
+  display: flex;
+  width: 100vw;
+  position: relative;
+  z-index: -1;
+
+  .sidebar {
+    width: 20%;
+    margin-left: 48px;
+    margin-right: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+
+    .slogan-wrapper {
+      color: #866957;
+      font-size: 30px;
+      position: absolute;
+      top: 10vh;
+    }
+
+    .sidebar-content {
+      display: flex;
+      align-items: center;
+      color: #171717;
+      font-size: 1.5rem;
+
+      :hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+}

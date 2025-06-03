@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Hero from "./_components/Hero/Hero";
 import RotatingLogo from "@/components/3d/RotatingLogo/RotatingLogo";
 import BackgroundBlur from "@/components/layout/BackgroundBlur/BackgroundBlur";
+import About from "./_components/About/About";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,10 +47,16 @@ export default function Home() {
       >
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start relative z-0">
           <BackgroundBlur />
-          <RotatingLogo />
-          <Hero />
+          <div className="relative">
+            <RotatingLogo />
+            <Hero />
+            <About />
+          </div>
         </main>
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        <footer
+          id="footer"
+          className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"
+        >
           <a
             className="flex items-center gap-2 hover:underline hover:underline-offset-4"
             href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
