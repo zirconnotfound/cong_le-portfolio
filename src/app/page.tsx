@@ -47,11 +47,9 @@ export default function Home() {
       >
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start relative z-0">
           <BackgroundBlur />
-          <div className="relative">
-            <RotatingLogo />
-            <Hero />
-            <About />
-          </div>
+          <RotatingLogo />
+          <Hero />
+          <About />
         </main>
         <footer
           id="footer"

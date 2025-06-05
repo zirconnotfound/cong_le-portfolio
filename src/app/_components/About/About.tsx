@@ -5,6 +5,7 @@ import styles from "./About.module.scss";
 import Description from "./Description/Description";
 import Team from "./Team/Team";
 import { Oswald, Judson } from "next/font/google";
+import MovingLogo from "@/components/3d/MovingLogo/MovingLogo";
 
 const judson = Judson({
   subsets: ["latin"],
@@ -33,6 +34,15 @@ const About = () => {
 
   return (
     <div id="about" className={`${styles["wrapper"]} ${oswald.className}`}>
+      <div
+        className={`${
+          styles["sidebar-logo"]
+        } transition-transform duration-300 ${
+          isAbout ? "translate-y-0" : "translate-y-[60%]"
+        }`}
+      >
+        <MovingLogo isClicked={isAbout} />
+      </div>
       <div className={styles["sidebar"]}>
         <div
           className={`${styles["slogan-wrapper"]} ${judson.className} ${
