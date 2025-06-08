@@ -1,10 +1,9 @@
 .image {
   position: absolute;
-  top: calc(50vh - 50%);
-  left: calc(50vw - 50%);
-  height: 100%;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  top: -50vh;
+  left: 0;
+  height: 200vh;
+  width: 200vw;
   z-index: -1;
-  filter: blur(100px);
+  filter: blur(130px);
 }

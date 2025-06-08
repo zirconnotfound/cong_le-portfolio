@@ -1,9 +1,9 @@
 import { Suspense, useRef } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { a, useSpring } from "@react-spring/three";
 import * as THREE from "three";
+import { Environment, Lightformer } from "@react-three/drei";
 import Logo from "../Logo/Logo";
-import { Environment } from "@react-three/drei";
 
 const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
   const logoRef = useRef<THREE.Group>(null);
@@ -15,9 +15,9 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
     (-201 / 180) * Math.PI,
   ];
   const endRotation = [
-    (146 / 180) * Math.PI,
+    (138 / 180) * Math.PI,
     (16 / 180) * Math.PI,
-    (-147 / 180) * Math.PI,
+    (-152 / 180) * Math.PI,
   ];
 
   const { position, rotation } = useSpring({
@@ -35,19 +35,20 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
       }}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.5} color="#866957" />
-        <directionalLight
-          position={[-10, -10, 5]}
-          intensity={0.5}
-          color="#866957"
-        />
+        {/* <ambientLight intensity={0.3} color="#ffffff" /> */}
         <a.group
           position={position as any}
           rotation={rotation as any}
           scale={0.7}
         >
           <Logo ref={logoRef} />
-          <Environment preset="apartment" />
+          <Environment files="/hdr/skylit_garage_1k.hdr">
+            <Lightformer
+              intensity={2}
+              position={!isClicked ? [-2, -2, -3] : [1, -2, -1]}
+              scale={[10, 10, 1]}
+            />
+          </Environment>
         </a.group>
       </Suspense>
     </Canvas>
