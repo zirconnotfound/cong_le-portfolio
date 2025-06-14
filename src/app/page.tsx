@@ -50,7 +50,7 @@ export default function Home() {
       >
         <main className="flex flex-col row-start-2 items-center sm:items-start relative z-0">
           <BackgroundBlur />
-          {/* <RotatingLogo /> */}
+          <RotatingLogo />
           <Hero />
           <About />
           <Works />
