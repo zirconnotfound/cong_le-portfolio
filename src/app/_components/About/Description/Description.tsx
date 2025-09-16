@@ -65,7 +65,7 @@ const Description = () => {
           We
         </p>
         <div className={styles["title"]} ref={titleRef}>
-          <p className={styles["title-text"]}>think. Find solution.</p>
+          <p className={styles["title-text"]}>think, find solution.</p>
           <p className={styles["title-text"]}>create the exquisite.</p>
           <p className={styles["title-text"]}>desire to grow</p>
         </div>
@@ -76,9 +76,7 @@ const Description = () => {
           quality of the built environment with subtle, yet confident designs
           characterised by clean lines and forms linked inextricably with
           function. Each design is unique, crafted to add commercial, social and
-          aesthetic value while expressing our responsibility to safeguard the
-          planet, nurture our team and enhance the lives of people who use the
-          spaces we create.
+          aesthetic value.
         </p>
       </div>
     </div>

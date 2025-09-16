@@ -15,6 +15,12 @@ const NewLogo = ({ active }: { active: boolean }) => {
     }
   });
 
+  useEffect(() => {
+    if (logoRef.current) {
+      logoRef.current.scale.set(1.2, 1.2, 1.2);
+    }
+  }, []);
+
   return <Logo ref={logoRef} />;
 };
 
@@ -31,8 +37,6 @@ const RotatingLogo = () => {
     if (inView) setHasEntered(true);
   }, [inView]);
 
-  console.log(inView, hasEntered);
-
   return (
     <div className={styles["logo-container"]} ref={ref}>
       {hasEntered && (
@@ -46,7 +50,7 @@ const RotatingLogo = () => {
             fov: 75,
             near: 0.1,
             far: 1000,
-            position: [5, 0, 0],
+            position: [6.5, 1.2, 0],
           }}
         >
           <Suspense fallback={null}>

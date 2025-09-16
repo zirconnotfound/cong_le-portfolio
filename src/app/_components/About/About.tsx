@@ -55,17 +55,71 @@ const About = () => {
         </div>
         <div
           className={styles["sidebar-content"]}
-          onClick={handleToggle}
-          style={isAbout ? { opacity: "100%" } : { opacity: "50%" }}
+          style={
+            isAbout
+              ? {
+                  opacity: "100%",
+                  transform: "translateX(8px)",
+                  transition: "all 0.3s",
+                }
+              : {
+                  opacity: "50%",
+                  transform: "translateX(0)",
+                  transition: "all 0.3s",
+                }
+          }
         >
-          <p className={styles["sidebar-text"]}>About</p>
+          <div
+            className={styles["sidebar-text"]}
+            onClick={handleToggle}
+            style={
+              isAbout
+                ? {
+                    background: "rgba(255, 255, 255, 0.2)",
+                    borderRadius: "10px",
+                    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(8px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                  }
+                : {}
+            }
+          >
+            About
+          </div>
         </div>
         <div
           className={styles["sidebar-content"]}
-          style={!isAbout ? { opacity: "100%" } : { opacity: "50%" }}
-          onClick={handleToggle}
+          style={
+            !isAbout
+              ? {
+                  opacity: "100%",
+                  transform: "translateX(8px)",
+                  transition: "all 0.3s",
+                }
+              : {
+                  opacity: "50%",
+                  transform: "translateX(0)",
+                  transition: "all 0.3s",
+                }
+          }
         >
-          <p className={styles["sidebar-text"]}>Team</p>
+          <div
+            className={styles["sidebar-text"]}
+            onClick={handleToggle}
+            style={
+              !isAbout
+                ? {
+                    background: "rgba(255, 255, 255, 0.2)",
+                    borderRadius: "10px",
+                    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(8px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                  }
+                : {}
+            }
+          >
+            Team
+          </div>
         </div>
       </div>
       <div

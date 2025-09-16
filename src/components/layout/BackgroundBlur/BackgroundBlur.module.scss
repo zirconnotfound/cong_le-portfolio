@@ -1,9 +1,9 @@
 .image {
-  position: absolute;
-  top: -50vh;
+  position: fixed;
+  top: -25vh;
   left: 0;
-  height: 200vh;
-  width: 200vw;
+  height: 150vh;
+  width: 150vw;
   z-index: -1;
-  filter: blur(130px);
+  filter: blur(200px);
 }

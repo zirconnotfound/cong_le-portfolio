@@ -27,9 +27,15 @@ const LoadingScreen = ({ fadeOut }: LoadingScreenProps) => {
   const [text, setText] = useState<string>(textList[0]);
   useEffect(() => {
     textList.forEach((item, index) => {
-      setTimeout(() => {
-        setText(item);
-      }, 500 * index);
+      if (index <= 4) {
+        setTimeout(() => {
+          setText(item);
+        }, 300 * index);
+      } else {
+        setTimeout(() => {
+          setText(item);
+        }, 1200 + 200 * (index - 4));
+      }
     });
   }, []);
 
@@ -37,11 +43,11 @@ const LoadingScreen = ({ fadeOut }: LoadingScreenProps) => {
     <div
       className={`${styles.wrapper} ${
         judson.className
-      } fixed inset-0 flex flex-col justify-center items-center bg-white z-50 transition-opacity duration-700 ${
+      } fixed inset-0 flex flex-col justify-center items-center z-50 transition-opacity duration-700 ${
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
-      <BackgroundBlur />
+      {/* <BackgroundBlur /> */}
       <p className={styles.text}>{text}</p>
     </div>
   );

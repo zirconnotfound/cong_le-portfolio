@@ -5,7 +5,6 @@ import Main from "./components/Main/Main";
 const Hero = () => {
   return (
     <div className={styles["wrapper"]}>
-      <NavBar />
       <Main />
     </div>
   );

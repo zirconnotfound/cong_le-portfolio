@@ -19,7 +19,7 @@ const teamData = [
   {
     name: "Cong Q La",
     position: "Founder",
-    image: "",
+    image: "/img/teams/cong_la.png",
     email: "",
     instagram: "",
     linkedin: "",
@@ -27,7 +27,7 @@ const teamData = [
   {
     name: "Son C Nguyen",
     position: "Developer",
-    image: "",
+    image: "/img/teams/son_nguyen.png",
     email: "",
     instagram: "",
     linkedin: "",
@@ -35,7 +35,7 @@ const teamData = [
   {
     name: "Huong T Tran",
     position: "Founder",
-    image: "",
+    image: "/img/teams/huong_tran.png",
     email: "",
     instagram: "",
     linkedin: "",
@@ -43,7 +43,7 @@ const teamData = [
   {
     name: "Manh D Hoang",
     position: "Founder",
-    image: "",
+    image: "/img/teams/manh_hoang.png",
     email: "",
     instagram: "",
     linkedin: "",
@@ -56,7 +56,7 @@ const Team = () => {
     setTeamIndex(index);
   };
   const handleTeamMemberOut = () => {
-    setTeamIndex(null);
+    // setTeamIndex(0);
   };
 
   return (
