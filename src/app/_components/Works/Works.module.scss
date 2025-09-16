@@ -15,7 +15,7 @@
     font-size: 300px;
     position: sticky;
     top: 0;
-    z-index: 1;
+    // z-index: 1;
     text-align: center;
     padding-bottom: 100vh;
   }
@@ -28,6 +28,6 @@
     align-items: center;
     gap: 2rem;
     position: relative;
-    z-index: 2;
+    // z-index: 2;
   }
 }
