@@ -40,14 +40,6 @@ const teamData = [
     instagram: "",
     linkedin: "",
   },
-  {
-    name: "Manh D Hoang",
-    position: "Founder",
-    image: "/img/teams/manh_hoang.png",
-    email: "",
-    instagram: "",
-    linkedin: "",
-  },
 ];
 
 const Team = () => {

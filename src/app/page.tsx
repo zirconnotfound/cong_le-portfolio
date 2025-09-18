@@ -1,6 +1,5 @@
 "use client";
 import LoadingScreen from "@/components/loading/LoadingScreen/LoadingScreen";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Hero from "./_components/Hero/Hero";
 import RotatingLogo from "@/components/3d/RotatingLogo/RotatingLogo";
@@ -36,9 +35,9 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // useEffect(() => {
-  //   document.body.style.overflow = isLoading ? "hidden" : "";
-  // }, [isLoading]);
+  useEffect(() => {
+    document.body.style.overflow = isLoading ? "hidden" : "";
+  }, [isLoading]);
 
   return (
     <>

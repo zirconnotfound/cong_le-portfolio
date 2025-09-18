@@ -4,5 +4,26 @@
   height: 110vh;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: 1;
+
+  .webver {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    // max-width: 1300px;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .webver-image {
+      object-fit: cover;
+      width: 90vw;
+      aspect-ratio: 1363 / 363;
+    }
+  }
 }

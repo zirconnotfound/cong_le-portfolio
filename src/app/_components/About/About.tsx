@@ -37,8 +37,8 @@ const About = () => {
       <div
         className={`${
           styles["sidebar-logo"]
-        } transition-transform duration-300 ${
-          isAbout ? "translate-y-0" : "translate-y-[60%]"
+        } transition-transform duration-600 ${
+          isAbout ? "translate-y-0" : "translate-y-[50%]"
         }`}
       >
         <MovingLogo isClicked={isAbout} />
@@ -75,8 +75,8 @@ const About = () => {
             style={
               isAbout
                 ? {
-                    background: "rgba(255, 255, 255, 0.2)",
-                    borderRadius: "10px",
+                    background: "rgba(255, 255, 255, 0.1)",
+                    borderRadius: "90px",
                     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                     backdropFilter: "blur(8px)",
                     border: "1px solid rgba(255, 255, 255, 0.3)",
@@ -109,8 +109,8 @@ const About = () => {
             style={
               !isAbout
                 ? {
-                    background: "rgba(255, 255, 255, 0.2)",
-                    borderRadius: "10px",
+                    background: "rgba(255, 255, 255, 0.1)",
+                    borderRadius: "90px",
                     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                     backdropFilter: "blur(8px)",
                     border: "1px solid rgba(255, 255, 255, 0.3)",

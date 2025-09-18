@@ -1,5 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import Logo from "../Logo/Logo";
 import { Environment } from "@react-three/drei";
 import styles from "./RotatingLogo.module.scss";
@@ -39,6 +40,15 @@ const RotatingLogo = () => {
 
   return (
     <div className={styles["logo-container"]} ref={ref}>
+      <div className={styles["webver"]}>
+        <Image
+          src="/img/webver.png"
+          alt="webver"
+          width={1363}
+          height={363}
+          className={styles["webver-image"]}
+        />
+      </div>
       {hasEntered && (
         <Canvas
           gl={{

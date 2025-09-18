@@ -17,14 +17,14 @@ const Main = () => {
       <div className={styles["slogan"]}>
         <p className={styles["slogan-text"]}>Create exquisite web</p>
       </div>
-      <div className={styles["webver"]}>
+      {/* <div className={styles["webver"]}>
         <Image
           src="/img/webver.png"
           alt="webver"
           fill
           className={styles["webver-image"]}
         />
-      </div>
+      </div> */}
       <div className={`${styles["footer"]} ${oswald.className}`}>
         <p className={styles["footer-text"]}>Scroll for more</p>
       </div>

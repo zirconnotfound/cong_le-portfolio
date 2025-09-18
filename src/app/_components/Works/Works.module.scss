@@ -17,12 +17,20 @@
     top: 0;
     // z-index: 1;
     text-align: center;
-    padding-bottom: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .title-text {
+      display: block;
+      position: relative;
+    }
   }
 
   .work-list {
     width: 100%;
-    padding: 0 36px 16px;
+    padding: 200vh 36px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;

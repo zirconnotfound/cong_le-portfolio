@@ -24,7 +24,7 @@ const Description = () => {
     const title = titleRef.current;
 
     if (scrollText && title) {
-      const speed = 2;
+      const speed = 1.5;
       const yOffset = (title.offsetHeight / 3) * 2;
       const distance = yOffset * speed;
 

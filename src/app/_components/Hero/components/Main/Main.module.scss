@@ -1,17 +1,20 @@
 .wrapper {
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 5rem);
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 5;
-  justify-content: space-around;
+  // z-index: 5;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   color: #000;
+  padding-top: 4rem;
 
   .slogan {
     font-size: 2.75rem;
     font-weight: 400;
+    position: relative;
+    z-index: 2;
   }
 
   .webver {
@@ -19,6 +22,7 @@
     width: 90vw;
     max-width: 1300px;
     aspect-ratio: 1363 / 363;
+    z-index: 0;
 
     .webver-img {
       object-fit: cover;

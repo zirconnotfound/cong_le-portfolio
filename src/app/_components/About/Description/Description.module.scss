@@ -3,12 +3,17 @@
   flex-direction: column;
   padding-left: 128px;
   padding-top: 20vh;
+  position: sticky;
 
   .title-wrapper {
     display: flex;
     gap: 1rem;
     font-size: 80px;
     color: #866957;
+
+    .scroll-text {
+      will-change: transform;
+    }
   }
 
   .content {

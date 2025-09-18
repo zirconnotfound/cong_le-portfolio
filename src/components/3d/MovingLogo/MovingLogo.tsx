@@ -23,7 +23,7 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
   const { position, rotation } = useSpring({
     position: [0, 0, 0],
     rotation: isClicked ? endRotation : startRotation,
-    config: { mass: 1, tension: 170, friction: 26 },
+    config: { mass: 1, tension: 140, friction: 46 },
   });
 
   return (
@@ -42,7 +42,7 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
           scale={0.7}
         >
           <Logo ref={logoRef} />
-          <Environment files="/hdr/skylit_garage_1k.hdr">
+          <Environment files="/hdr/fireplace_1k.hdr">
             <Lightformer
               intensity={2}
               position={!isClicked ? [-2, -2, -3] : [1, -2, -1]}

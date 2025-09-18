@@ -46,9 +46,6 @@ const Works = () => {
   return (
     <div className={styles["wrapper"]}>
       <div className={`${styles["title"]} ${judson.className}`}>
-        {/* <div className={styles["background-blur"]} style={{ opacity: 0.8 }}>
-          <BackgroundBlur />
-        </div> */}
         <p className={styles["title-text"]}>Our works</p>
       </div>
       <div className={styles["work-list"]}>
