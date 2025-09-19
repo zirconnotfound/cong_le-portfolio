@@ -40,6 +40,14 @@ const teamData = [
     instagram: "",
     linkedin: "",
   },
+  {
+    name: "Hung V Nguyen",
+    position: "Founder",
+    image: "",
+    email: "",
+    instagram: "",
+    linkedin: "",
+  },
 ];
 
 const Team = () => {

@@ -9,7 +9,7 @@
   .sidebar-logo {
     position: absolute;
     top: -30%;
-    left: -13%;
+    left: -10%;
     width: 50%;
     z-index: 0;
     display: flex;
@@ -28,7 +28,7 @@
 
     .slogan-wrapper {
       color: #866957;
-      font-size: 30px;
+      font-size: 40px;
       position: absolute;
       top: 10vh;
 
@@ -46,10 +46,6 @@
       .sidebar-text {
         display: inline;
         padding: 8px 16px;
-      }
-
-      :hover {
-        cursor: pointer;
       }
     }
   }

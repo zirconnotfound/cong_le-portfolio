@@ -38,7 +38,7 @@ const About = () => {
         className={`${
           styles["sidebar-logo"]
         } transition-transform duration-600 ${
-          isAbout ? "translate-y-0" : "translate-y-[50%]"
+          isAbout ? "translate-y-0" : "translate-y-[45%]"
         }`}
       >
         <MovingLogo isClicked={isAbout} />
@@ -80,8 +80,11 @@ const About = () => {
                     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                     backdropFilter: "blur(8px)",
                     border: "1px solid rgba(255, 255, 255, 0.3)",
+                    cursor: "pointer",
                   }
-                : {}
+                : {
+                    cursor: "pointer",
+                  }
             }
           >
             About
@@ -114,8 +117,11 @@ const About = () => {
                     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                     backdropFilter: "blur(8px)",
                     border: "1px solid rgba(255, 255, 255, 0.3)",
+                    cursor: "pointer",
                   }
-                : {}
+                : {
+                    cursor: "pointer",
+                  }
             }
           >
             Team

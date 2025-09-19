@@ -24,7 +24,7 @@ const Description = () => {
     const title = titleRef.current;
 
     if (scrollText && title) {
-      const speed = 1.5;
+      const speed = 1.15;
       const yOffset = (title.offsetHeight / 3) * 2;
       const distance = yOffset * speed;
 
@@ -46,7 +46,7 @@ const Description = () => {
           start: "top bottom-=" + scrollText.offsetHeight / 2,
           end: "bottom bottom-=" + distance,
           scrub: true,
-          invalidateOnRefresh: false,
+          invalidateOnRefresh: true,
         },
         defaults: {
           ease: "none",
@@ -54,6 +54,11 @@ const Description = () => {
       });
 
       timeline.to(scrollText, { y: yOffset });
+
+      return () => {
+        timeline.kill();
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
     }
   });
   return (

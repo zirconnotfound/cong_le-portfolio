@@ -3,7 +3,6 @@
 import Link from "next/link";
 import styles from "./NavBar.module.scss";
 import { Oswald } from "next/font/google";
-import { useRef } from "react";
 
 const oswald = Oswald({
   subsets: ["latin"],

@@ -3,7 +3,7 @@ import { useEffect, forwardRef, useMemo } from "react";
 import * as THREE from "three";
 
 const Logo = forwardRef((props: any, ref: React.ForwardedRef<THREE.Group>) => {
-  const original = useGLTF("/gltf/logo_3.glb");
+  const original = useGLTF("/gltf/logo_2.glb");
   const cloned = useMemo(() => original.scene.clone(), [original]);
 
   useEffect(() => {

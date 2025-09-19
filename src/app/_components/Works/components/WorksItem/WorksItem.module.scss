@@ -16,7 +16,7 @@
 
   .content {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
 
     .content-text {
@@ -45,4 +45,17 @@
       cursor: pointer;
     }
   }
+}
+
+.tooltip {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  pointer-events: none;
+  white-space: nowrap;
+  transform: translate(10px, 10px);
+  display: none;
 }
