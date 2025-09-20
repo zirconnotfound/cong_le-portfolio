@@ -1,9 +1,9 @@
 .wrapper {
   display: flex;
   align-items: center;
-  padding-top: 30vh;
   margin-right: 36px;
   padding-left: 36px;
+  width: 100%;
 
   .team-wrapper {
     width: 100%;
@@ -14,7 +14,7 @@
       color: #171717;
       font-size: 70px;
       font-weight: 500;
-      padding-top: 10vh;
+      // padding-top: 10vh;
     }
 
     .team-details {

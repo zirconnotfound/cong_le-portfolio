@@ -1,6 +1,6 @@
 .wrapper {
   // background-color: rgb(229, 223, 219);
-  height: 120vh;
+  height: 100vh;
   display: flex;
   width: 100vw;
   position: relative;
@@ -30,7 +30,7 @@
       color: #866957;
       font-size: 40px;
       position: absolute;
-      top: 10vh;
+      top: 0;
 
       .slogan-text {
         width: 80%;
@@ -54,5 +54,6 @@
     flex: 1;
     position: relative;
     z-index: 1;
+    display: flex;
   }
 }

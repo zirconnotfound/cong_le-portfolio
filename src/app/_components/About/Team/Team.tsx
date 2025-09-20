@@ -80,7 +80,7 @@ const Team = () => {
               <Image
                 src={teamData[teamIndex].image}
                 width={400}
-                height={560}
+                height={400}
                 alt={`${teamData[teamIndex].name}'s photo`}
                 className={styles["member-image"]}
               />

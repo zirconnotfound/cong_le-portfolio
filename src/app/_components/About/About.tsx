@@ -38,7 +38,7 @@ const About = () => {
         className={`${
           styles["sidebar-logo"]
         } transition-transform duration-600 ${
-          isAbout ? "translate-y-0" : "translate-y-[45%]"
+          isAbout ? "translate-y-0" : "translate-y-[55%]"
         }`}
       >
         <MovingLogo isClicked={isAbout} />
