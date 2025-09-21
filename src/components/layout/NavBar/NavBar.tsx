@@ -8,9 +8,13 @@ const oswald = Oswald({
   subsets: ["latin"],
 });
 
-const NavBar = () => {
+const NavBar = ({ isBlack }: { isBlack: boolean }) => {
   return (
-    <div className={`${styles["navigation"]} ${oswald.className}`}>
+    <div
+      className={`${styles["navigation"]} ${oswald.className} ${
+        isBlack ? styles["black"] : styles["white"]
+      }`}
+    >
       <div className={styles["center-nav"]}>
         <Link href="#about" className={styles["about"]}>
           <span className={styles["about-text"]}>About</span>

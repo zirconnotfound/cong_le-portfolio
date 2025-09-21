@@ -4,18 +4,8 @@ import { useState } from "react";
 import styles from "./About.module.scss";
 import Description from "./Description/Description";
 import Team from "./Team/Team";
-import { Oswald, Judson } from "next/font/google";
+import { swiss, sfuCentury } from "@/fonts";
 import MovingLogo from "@/components/3d/MovingLogo/MovingLogo";
-
-const judson = Judson({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const oswald = Oswald({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 const About = () => {
   const [isAbout, setIsAbout] = useState(true);
@@ -33,7 +23,7 @@ const About = () => {
   };
 
   return (
-    <div id="about" className={`${styles["wrapper"]} ${oswald.className}`}>
+    <div id="about" className={`${styles["wrapper"]} ${swiss.className}`}>
       <div
         className={`${
           styles["sidebar-logo"]
@@ -45,7 +35,7 @@ const About = () => {
       </div>
       <div className={styles["sidebar"]}>
         <div
-          className={`${styles["slogan-wrapper"]} ${judson.className} ${
+          className={`${styles["slogan-wrapper"]} ${sfuCentury.className} ${
             isAbout ? "invisible" : ""
           }`}
         >

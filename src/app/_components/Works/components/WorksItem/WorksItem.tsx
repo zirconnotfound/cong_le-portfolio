@@ -4,21 +4,12 @@ import styles from "./WorksItem.module.scss";
 import Image from "next/image";
 import { useRef } from "react";
 import { ItemProps } from "../../Works";
-import { Judson, Oswald } from "next/font/google";
+import { sfuCentury, swiss } from "@/fonts";
 
 type WorksItemProps = {
   index: number;
   data: ItemProps;
 };
-
-const judson = Judson({
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const oswald = Oswald({
-  subsets: ["latin"],
-});
 
 const WorksItem = ({ index, data }: WorksItemProps) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -69,10 +60,10 @@ const WorksItem = ({ index, data }: WorksItemProps) => {
         </div>
         <div className={styles["content"]}>
           <div className={styles["content-text"]}>
-            <p className={`${styles["title"]} ${judson.className}`}>
+            <p className={`${styles["title"]} ${sfuCentury.className}`}>
               {data.title}
             </p>
-            <p className={`${styles["type"]} ${oswald.className}`}>
+            <p className={`${styles["type"]} ${swiss.className}`}>
               {data.type}
             </p>
           </div>

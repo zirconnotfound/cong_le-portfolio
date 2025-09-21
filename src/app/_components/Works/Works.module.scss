@@ -12,7 +12,7 @@
   .title {
     width: 100%;
     color: #171717;
-    font-size: 300px;
+    font-size: 400px;
     position: sticky;
     top: 0;
     // z-index: 1;
@@ -21,6 +21,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-weight: 700;
 
     .title-text {
       display: block;

@@ -1,22 +1,13 @@
 import styles from "./Main.module.scss";
-import { Judson, Oswald } from "next/font/google";
-
-const judson = Judson({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const oswald = Oswald({
-  subsets: ["latin"],
-});
+import { sfuCentury, swiss } from "@/fonts";
 
 const Main = () => {
   return (
-    <div className={`${styles["wrapper"]} ${judson.className}`}>
+    <div className={`${styles["wrapper"]} ${sfuCentury.className}`}>
       <div className={styles["slogan"]}>
         <p className={styles["slogan-text"]}>Create exquisite web</p>
       </div>
-      <div className={`${styles["footer"]} ${oswald.className}`}>
+      <div className={`${styles["footer"]} ${swiss.className}`}>
         <p className={styles["footer-text"]}>Scroll for more</p>
       </div>
     </div>

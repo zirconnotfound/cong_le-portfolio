@@ -13,6 +13,8 @@ import NavBar from "@/components/layout/NavBar/NavBar";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFadeout, setIsFadeout] = useState(false);
+  const [isBlack, setIsBlack] = useState(false);
+
   useGLTF.preload("/gltf/logo.glb");
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -51,11 +53,11 @@ export default function Home() {
           }`}
       >
         <main className="flex flex-col row-start-2 items-center sm:items-start relative z-1">
-          <NavBar />
+          <NavBar isBlack={isBlack} />
           <RotatingLogo />
           <Hero />
           <About />
-          <Works />
+          <Works onToggle={setIsBlack} />
         </main>
         <Footer />
       </div>

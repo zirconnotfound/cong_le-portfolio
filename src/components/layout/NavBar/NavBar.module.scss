@@ -45,5 +45,13 @@
     align-items: center;
     height: 100%;
     font-size: 1.25rem;
+    color: var(--text-color);
   }
+}
+
+.navigation.white {
+  --text-color: #00000080;
+}
+.navigation.black {
+  --text-color: #e5e5e5;
 }

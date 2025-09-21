@@ -1,17 +1,8 @@
 import styles from "./Description.module.scss";
-import { Judson, Oswald } from "next/font/google";
+import { sfuCentury, swiss } from "@/fonts";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
-
-const judson = Judson({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const oswald = Oswald({
-  subsets: ["latin"],
-});
 
 const Description = () => {
   const scrollTextRef = useRef<HTMLParagraphElement>(null);
@@ -65,7 +56,7 @@ const Description = () => {
     <div
       className={`${styles["wrapper"]} animate-fade-in transition-all duration-700 ease-out`}
     >
-      <div className={`${styles["title-wrapper"]} ${judson.className}`}>
+      <div className={`${styles["title-wrapper"]} ${sfuCentury.className}`}>
         <p className={styles["scroll-text"]} ref={scrollTextRef}>
           We
         </p>
@@ -75,7 +66,7 @@ const Description = () => {
           <p className={styles["title-text"]}>desire to grow</p>
         </div>
       </div>
-      <div className={`${styles["content"]} ${oswald.className}`}>
+      <div className={`${styles["content"]} ${swiss.className}`}>
         <p className={styles["content-text"]}>
           We’re fueled by curiosity and creativity. We seek to improve the
           quality of the built environment with subtle, yet confident designs

@@ -3,13 +3,8 @@
 import WorksItem from "./components/WorksItem/WorksItem";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import { Judson } from "next/font/google";
+import { sfuCentury } from "@/fonts";
 import styles from "./Works.module.scss";
-
-const judson = Judson({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export type ItemProps = {
   title: string;
@@ -45,7 +40,7 @@ const worksList: ItemProps[] = [
   },
 ];
 
-const Works = () => {
+const Works = ({ onToggle } : any) => {
   const connectorRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<GSAPTimeline | null>(null);
   const triggeredRef = useRef<boolean>(false);
@@ -68,9 +63,11 @@ const Works = () => {
       if (middleY <= viewportMiddle && !triggeredRef.current) {
         tlRef.current.play();
         triggeredRef.current = true;
+        onToggle(true);
       } else if (middleY > viewportMiddle && triggeredRef.current) {
         tlRef.current.reverse();
         triggeredRef.current = false;
+        onToggle(false);
       }
     };
 
@@ -84,7 +81,7 @@ const Works = () => {
   return (
     <>
       <div className={styles["wrapper"]} id="works">
-        <div className={`${styles["title"]} ${judson.className}`}>
+        <div className={`${styles["title"]} ${sfuCentury.className}`}>
           <p className={styles["title-text"]}>Our works</p>
         </div>
         <div className={styles["work-list"]}>

@@ -51,7 +51,7 @@ const teamData = [
 ];
 
 const Team = () => {
-  const [teamIndex, setTeamIndex] = useState<number | null>(null);
+  const [teamIndex, setTeamIndex] = useState<number>(0);
   const handleTeamMemberHover = (index: number) => {
     setTeamIndex(index);
   };
