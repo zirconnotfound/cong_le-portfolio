@@ -4,16 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./Team.module.scss";
 import Link from "next/link";
-import { Oswald, Judson } from "next/font/google";
-
-const oswald = Oswald({
-  subsets: ["latin"],
-});
-
-const judson = Judson({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
+import { sfuCentury, swiss } from "@/fonts";
 
 const teamData = [
   {
@@ -62,7 +53,7 @@ const Team = () => {
   return (
     <div className={styles["wrapper"]}>
       <div className={styles["team-wrapper"]}>
-        <div className={`${styles["team-list"]} ${oswald.className}`}>
+        <div className={`${styles["team-list"]} ${swiss.className}`}>
           {teamData.map((member, index) => (
             <div
               key={index}
@@ -86,7 +77,7 @@ const Team = () => {
               />
               <div className={styles["member-info"]}>
                 <div
-                  className={`${styles["member-position"]} ${judson.className}`}
+                  className={`${styles["member-position"]} ${sfuCentury.className}`}
                 >
                   <p className={styles["position-text"]}>
                     {teamData[teamIndex].position}

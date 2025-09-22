@@ -32,6 +32,12 @@
       text-decoration: none;
       color: var(--text-color);
       font-size: 1.25rem;
+      opacity: 0.5;
+      transition: opacity 0.3s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     .logo {
@@ -46,11 +52,18 @@
     height: 100%;
     font-size: 1.25rem;
     color: var(--text-color);
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
   }
 }
 
 .navigation.white {
-  --text-color: #00000080;
+  --text-color: #000000;
 }
 .navigation.black {
   --text-color: #e5e5e5;

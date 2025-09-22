@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, use } from "react";
-import { Judson } from "next/font/google";
-import BackgroundBlur from "@/components/layout/BackgroundBlur/BackgroundBlur";
+import { sfuCentury } from "@/fonts";
 import styles from "./LoadingScreen.module.scss";
 
 const textList = [
@@ -13,11 +12,6 @@ const textList = [
   "你好",
   "Xin chào",
 ];
-
-const judson = Judson({
-  subsets: ["latin"],
-  weight: "700",
-});
 
 interface LoadingScreenProps {
   fadeOut: boolean;
@@ -42,9 +36,11 @@ const LoadingScreen = ({ fadeOut }: LoadingScreenProps) => {
   return (
     <div
       className={`${styles.wrapper} ${
-        judson.className
-      } fixed inset-0 flex flex-col justify-center items-center z-50 transition-opacity duration-700 ${
-        fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
+        sfuCentury.className
+      } fixed inset-0 flex flex-col justify-center items-center z-50 transition-all duration-3000 ease-in-out ${
+        fadeOut
+          ? "opacity-0 pointer-events-none -translate-y-full"
+          : "opacity-100 translate-y-0"
       }`}
     >
       {/* <BackgroundBlur /> */}

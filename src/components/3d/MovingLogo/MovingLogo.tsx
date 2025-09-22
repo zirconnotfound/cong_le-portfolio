@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { a, useSpring } from "@react-spring/three";
 import * as THREE from "three";
@@ -20,9 +20,10 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
     (-152 / 180) * Math.PI,
   ];
 
-  const { position, rotation } = useSpring({
+  const { position, rotation, scale } = useSpring({
     position: [0, 0, 0],
     rotation: isClicked ? endRotation : startRotation,
+    scale: [1.2, 1.2, 1.2],
     config: { mass: 1, tension: 140, friction: 46 },
   });
 
@@ -39,9 +40,11 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
         <a.group
           position={position as any}
           rotation={rotation as any}
-          scale={0.7}
+          scale={[0.7, 0.7, 0.7]}
         >
-          <Logo ref={logoRef} />
+          <a.group scale={scale as any}>
+            <Logo ref={logoRef} />
+          </a.group>
           <Environment files="/hdr/fireplace_1k.hdr">
             <Lightformer
               intensity={2}
