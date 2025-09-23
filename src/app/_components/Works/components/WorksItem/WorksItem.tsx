@@ -2,37 +2,17 @@
 
 import styles from "./WorksItem.module.scss";
 import Image from "next/image";
-import { useRef } from "react";
 import { ItemProps } from "../../Works";
 import { sfuCentury, swiss } from "@/fonts";
 
 type WorksItemProps = {
   index: number;
   data: ItemProps;
+  onHover: (e: any) => void;
+  onLeave: () => void;
 };
 
-const WorksItem = ({ index, data }: WorksItemProps) => {
-  const tooltipRef = useRef<HTMLDivElement>(null);
-  const areaRef = useRef<HTMLDivElement>(null);
-
-  if (tooltipRef.current && areaRef.current) {
-    const tooltip = tooltipRef.current;
-    const area = areaRef.current;
-
-    area.onmouseover = (e) => {
-      tooltip.style.display = "block";
-    };
-
-    area.onmousemove = (e) => {
-      tooltip.style.left = e.pageX + "px";
-      tooltip.style.top = e.pageY + "px";
-    };
-
-    area.onmouseout = (e) => {
-      tooltip.style.display = "none";
-    };
-  }
-
+const WorksItem = ({ index, data, onHover, onLeave }: WorksItemProps) => {
   return (
     <>
       <div
@@ -48,13 +28,14 @@ const WorksItem = ({ index, data }: WorksItemProps) => {
           onClick={() =>
             window.open(data.link, "_blank", "noopener,noreferrer")
           }
-          ref={areaRef}
         >
           <Image
             src={data.img}
             width={300}
             height={200}
             alt={data.title}
+            onMouseMove={onHover}
+            onMouseLeave={onLeave}
             className={styles["image"]}
           />
         </div>
@@ -68,9 +49,6 @@ const WorksItem = ({ index, data }: WorksItemProps) => {
             </p>
           </div>
         </div>
-      </div>
-      <div className={styles["tooltip"]} ref={tooltipRef}>
-        Details
       </div>
     </>
   );

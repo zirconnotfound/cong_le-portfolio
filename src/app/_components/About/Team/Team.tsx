@@ -10,7 +10,7 @@ const teamData = [
   {
     name: "Cong Q La",
     position: "Founder",
-    image: "/img/teams/cong_la.png",
+    image: "/img/teams/cong_la.webp",
     email: "",
     instagram: "",
     linkedin: "",
@@ -18,7 +18,7 @@ const teamData = [
   {
     name: "Son C Nguyen",
     position: "Developer",
-    image: "/img/teams/son_nguyen.png",
+    image: "/img/teams/son_nguyen.webp",
     email: "",
     instagram: "",
     linkedin: "",
@@ -26,7 +26,7 @@ const teamData = [
   {
     name: "Huong T Tran",
     position: "Founder",
-    image: "/img/teams/huong_tran.png",
+    image: "/img/teams/huong_tran.webp",
     email: "",
     instagram: "",
     linkedin: "",
@@ -86,7 +86,7 @@ const Team = () => {
                 <div className={styles["member-link"]}>
                   <Link href={`mailto:${teamData[teamIndex].email}`}>
                     <Image
-                      src="/img/email-icon.png"
+                      src="/img/email-icon.webp"
                       width={24}
                       height={24}
                       alt="Email icon"
@@ -95,7 +95,7 @@ const Team = () => {
                   </Link>
                   <Link href={teamData[teamIndex].instagram}>
                     <Image
-                      src="/img/ins-icon.png"
+                      src="/img/ins-icon.webp"
                       width={24}
                       height={24}
                       alt="Instagram icon"
@@ -104,7 +104,7 @@ const Team = () => {
                   </Link>
                   <Link href={teamData[teamIndex].linkedin}>
                     <Image
-                      src="/img/linkedin-icon.png"
+                      src="/img/linkedin-icon.webp"
                       width={24}
                       height={24}
                       alt="LinkedIn icon"

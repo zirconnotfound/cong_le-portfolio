@@ -4,6 +4,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: 50vh;
   align-items: center;
   justify-content: center;
   // overflow: hidden;
@@ -41,9 +42,37 @@
   }
 }
 
+.tooltip-div {
+  position: fixed;
+  // background: rgba(0, 0, 0, 0.75);
+  // color: #fff;
+  // border-radius: 6px;
+  font-size: 14px;
+  border-radius: 200px;
+  pointer-events: none;
+  white-space: nowrap;
+  transform: translate(8px, 8px);
+  display: block;
+
+  .tooltip {
+    width: 100px;
+    height: 100px;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .tooltip-text {
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+}
+
 .connector {
   // background-color: #fff;
-  height: 300vh;
+  height: 250vh;
   width: 100vw;
   z-index: 0;
 }

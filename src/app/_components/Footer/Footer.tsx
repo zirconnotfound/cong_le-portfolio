@@ -18,13 +18,13 @@ const Footer = () => {
         </p>
         <div className={styles["socials"]}>
           <i className={styles["social-icon"]}>
-            <img src="/img/icons/email.png" alt="Email" />
+            <img src="/img/icons/email.webp" alt="Email" />
           </i>
           <i className={styles["social-icon"]}>
-            <img src="/img/icons/fb.png" alt="Facebook" />
+            <img src="/img/icons/fb.webp" alt="Facebook" />
           </i>
           <i className={styles["social-icon"]}>
-            <img src="/img/icons/linkedin.png" alt="LinkedIn" />
+            <img src="/img/icons/linkedin.webp" alt="LinkedIn" />
           </i>
         </div>
       </div>

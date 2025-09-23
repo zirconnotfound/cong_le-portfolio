@@ -42,7 +42,7 @@ const RotatingLogo = () => {
     <div className={styles["logo-container"]} ref={ref}>
       <div className={styles["webver"]}>
         <Image
-          src="/img/webver.png"
+          src="/img/webver.webp"
           alt="webver"
           width={1363}
           height={363}
