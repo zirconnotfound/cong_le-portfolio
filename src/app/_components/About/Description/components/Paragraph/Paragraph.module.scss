@@ -1,0 +1,22 @@
+.paragraph {
+  color: #171717;
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .word {
+    margin-right: 6px;
+
+    .character {
+      margin-top: 8px;
+      position: relative;
+
+      .shadow {
+        position: absolute;
+        opacity: 0.3;
+      }
+    }
+  }
+}

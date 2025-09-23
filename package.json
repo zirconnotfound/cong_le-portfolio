@@ -13,6 +13,7 @@
     "@react-spring/three": "^10.0.1",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
+    "framer-motion": "^12.23.19",
     "gsap": "^3.13.0",
     "next": "15.3.2",
     "react": "^19.0.0",

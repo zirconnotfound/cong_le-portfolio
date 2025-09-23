@@ -9,6 +9,7 @@ import Works from "./_components/Works/Works";
 import Footer from "./_components/Footer/Footer";
 import { useGLTF } from "@react-three/drei";
 import NavBar from "@/components/layout/NavBar/NavBar";
+import Slogan from "./_components/Slogan/Slogan";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +58,8 @@ export default function Home() {
           <RotatingLogo />
           <Hero />
           <About />
-          <Works onToggle={setIsBlack} />
+          <Works />
+          <Slogan onToggle={setIsBlack} />
         </main>
         <Footer />
       </div>

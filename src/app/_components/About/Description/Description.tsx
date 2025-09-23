@@ -3,6 +3,10 @@ import { sfuCentury, swiss } from "@/fonts";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import Paragraph from "./components/Paragraph/Paragraph";
+
+const text =
+  "We're fueled by curiosity and creativity. We seek to improve the quality of the built environment with subtle, yet confident designs characterised by clean lines and forms linked inextricably with function. Each design is unique, crafted to add commercial, social and aesthetic value.";
 
 const Description = () => {
   const scrollTextRef = useRef<HTMLParagraphElement>(null);
@@ -67,13 +71,7 @@ const Description = () => {
         </div>
       </div>
       <div className={`${styles["content"]} ${swiss.className}`}>
-        <p className={styles["content-text"]}>
-          We’re fueled by curiosity and creativity. We seek to improve the
-          quality of the built environment with subtle, yet confident designs
-          characterised by clean lines and forms linked inextricably with
-          function. Each design is unique, crafted to add commercial, social and
-          aesthetic value.
-        </p>
+        <Paragraph text={text} />
       </div>
     </div>
   );
