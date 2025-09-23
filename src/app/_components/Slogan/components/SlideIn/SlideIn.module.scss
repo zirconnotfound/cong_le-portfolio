@@ -5,10 +5,21 @@
   gap: 4rem;
   align-items: center;
   overflow: hidden;
+  position: relative;
 
   .line {
-    font-weight: 700;
+    width: 100%;
+    display: flex;
     font-size: 130px;
+    font-weight: 700;
     color: #dbdbdb;
+  }
+
+  .line.first-line {
+    flex-direction: row;
+  }
+
+  .line.second-line {
+    flex-direction: row-reverse;
   }
 }
