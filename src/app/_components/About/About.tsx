@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import styles from "./About.module.scss";
 import Description from "./Description/Description";
@@ -23,12 +23,10 @@ const About = () => {
     }, 300);
   };
 
-  // 👇 for scroll animation
+  // 👇 In-view detection
   const ref = useRef(null);
-  const inView = useInView(ref, {
-    once: false, // allow multiple triggers
-    margin: "-100px", // trigger slightly before fully in view
-  });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  // once:true → only trigger once when scrolling down
 
   return (
     <motion.div
@@ -36,7 +34,7 @@ const About = () => {
       id="about"
       className={`${styles["wrapper"]} ${swiss.className}`}
       initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}} // only animates when scrolling down
+      animate={inView ? { opacity: 1, y: 0 } : {}} // will not reset when scrolling up
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div
@@ -87,9 +85,7 @@ const About = () => {
                     border: "1px solid rgba(255, 255, 255, 0.3)",
                     cursor: "pointer",
                   }
-                : {
-                    cursor: "pointer",
-                  }
+                : { cursor: "pointer" }
             }
           >
             About
@@ -124,9 +120,7 @@ const About = () => {
                     border: "1px solid rgba(255, 255, 255, 0.3)",
                     cursor: "pointer",
                   }
-                : {
-                    cursor: "pointer",
-                  }
+                : { cursor: "pointer" }
             }
           >
             Team
