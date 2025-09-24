@@ -17,11 +17,11 @@
 
   .line.first-line {
     flex-direction: row;
-    margin-left: 40px;
+    margin-left: calc(36px + 4rem);
   }
 
   .line.second-line {
     flex-direction: row-reverse;
-    margin-right: 40px;
+    margin-right: calc(36px + 4rem);
   }
 }
