@@ -23,7 +23,7 @@ const Paragraph = ({ text }: ParagraphProps) => {
   const element = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: element,
-    offset: ["start 1", "start 0.25"],
+    offset: ["start 1.2", "start 0.25"],
   });
 
   const words = text.split(" ");

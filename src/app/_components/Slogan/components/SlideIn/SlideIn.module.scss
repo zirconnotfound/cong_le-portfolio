@@ -17,9 +17,11 @@
 
   .line.first-line {
     flex-direction: row;
+    margin-left: 40px;
   }
 
   .line.second-line {
     flex-direction: row-reverse;
+    margin-right: 40px;
   }
 }

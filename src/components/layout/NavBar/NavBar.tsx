@@ -17,9 +17,9 @@ const NavBar = ({ isBlack }: { isBlack: boolean }) => {
           borderRadius={200}
           blur={2}
           contrast={0.8}
-          brightness={1.2}
+          brightness={1.1}
           saturation={1}
-          shadowIntensity={0.2}
+          shadowIntensity={0.05}
           displacementScale={1.4}
           elasticity={0.5}
         >

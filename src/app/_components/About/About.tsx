@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import styles from "./About.module.scss";
 import Description from "./Description/Description";
 import Team from "./Team/Team";
@@ -22,8 +23,22 @@ const About = () => {
     }, 300);
   };
 
+  // 👇 for scroll animation
+  const ref = useRef(null);
+  const inView = useInView(ref, {
+    once: false, // allow multiple triggers
+    margin: "-100px", // trigger slightly before fully in view
+  });
+
   return (
-    <div id="about" className={`${styles["wrapper"]} ${swiss.className}`}>
+    <motion.div
+      ref={ref}
+      id="about"
+      className={`${styles["wrapper"]} ${swiss.className}`}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}} // only animates when scrolling down
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div
         className={`${
           styles["sidebar-logo"]
@@ -124,7 +139,7 @@ const About = () => {
       >
         {isAbout ? <Description /> : <Team />}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
