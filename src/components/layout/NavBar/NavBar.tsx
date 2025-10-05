@@ -16,10 +16,10 @@ const NavBar = ({ isBlack }: { isBlack: boolean }) => {
         <LiquidGlass
           borderRadius={200}
           blur={2}
-          contrast={0.8}
-          brightness={1.1}
+          contrast={1.2}
+          brightness={1.05}
           saturation={1}
-          shadowIntensity={0.05}
+          shadowIntensity={0.02}
           displacementScale={1.4}
           elasticity={0.5}
         >

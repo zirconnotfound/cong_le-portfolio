@@ -17,23 +17,11 @@ const Description = () => {
 
     const scrollText = scrollTextRef.current;
     const title = titleRef.current;
+    const viewHeight = window.innerHeight;
 
     if (scrollText && title) {
-      const speed = 1.15;
       const yOffset = (title.offsetHeight / 3) * 2;
-      const distance = yOffset * speed;
-
-      // gsap.to(scrollText, {
-      //   y: yOffset,
-      //   ease: "none",
-      //   scrollTrigger: {
-      //     trigger: scrollText,
-      //     start: "top bottom-=" + scrollText.offsetHeight / 2,
-      //     end: "bottom bottom-=" + distance,
-      //     scrub: true,
-      //     markers: true,
-      //   },
-      // });
+      const distance = 0.7 * viewHeight - title.offsetHeight;
 
       const timeline = gsap.timeline({
         scrollTrigger: {
