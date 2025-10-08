@@ -28,8 +28,8 @@ const Slogan = ({ onToggle }: SloganProps) => {
       if (!connectorRef.current || !tlRef.current) return;
 
       const rect = connectorRef.current.getBoundingClientRect();
-      const middleY = rect.top + rect.height / 2;
-      const viewportMiddle = window.innerHeight / 2;
+      const middleY = rect.top;
+      const viewportMiddle = window.innerHeight;
 
       if (middleY <= viewportMiddle && !triggeredRef.current) {
         tlRef.current.play();
