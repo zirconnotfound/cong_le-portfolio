@@ -4,7 +4,8 @@
   display: flex;
   width: 100vw;
   position: relative;
-  z-index: 100;
+  z-index: -1;
+  margin-top: 36px;
 
   .sidebar-logo {
     position: absolute;
