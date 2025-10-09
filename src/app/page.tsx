@@ -32,7 +32,7 @@ export default function Home() {
       setIsFadeout(true);
       setTimeout(() => {
         setIsLoading(false);
-      }, 200);
+      }, 700);
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -44,24 +44,29 @@ export default function Home() {
 
   return (
     <>
-      <BackgroundBlur />
       {isLoading ? <LoadingScreen fadeOut={isFadeout} /> : null}
-      {/* <LoadingScreen fadeOut={isFadeout} /> */}
+      <div className="fixed top-0 left-0 w-full z-10 flex flex-col items-center justify-center">
+        <Hero />
+        <RotatingLogo />
+      </div>
+
+      <NavBar isBlack={isBlack} />
       <div
-        className={`items-center justify-items-center min-h-screen transition-all duration-700 ease-out z-1 relative
-          ${
-            isLoading ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
-          }`}
+        className={`items-center justify-items-center min-h-screen transition-opacity duration-700 ease-out relative w-full overflow-x-hidden
+          ${isLoading ? "opacity-0" : "opacity-100"} relative z-20`}
       >
-        <main className="flex flex-col row-start-2 items-center sm:items-start relative z-1">
-          <NavBar isBlack={isBlack} />
-          <RotatingLogo />
-          <Hero />
+        <div className="relative mt-[100vh] z-20 bg-white overflow-hidden">
+          <BackgroundBlur position="absolute" />
           <About />
+        </div>
+      </div>
+      <div className="z-20 bg-white relative">
+        <BackgroundBlur position="sticky" />
+        <div className="-mt-[150vh]">
           <Works />
           <Slogan onToggle={setIsBlack} />
-        </main>
-        <Footer />
+          <Footer />
+        </div>
       </div>
     </>
   );

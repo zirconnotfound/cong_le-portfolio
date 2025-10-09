@@ -2,6 +2,7 @@
 import { useState, useEffect, use } from "react";
 import { sfuCentury } from "@/fonts";
 import styles from "./LoadingScreen.module.scss";
+import BackgroundBlur from "@/components/layout/BackgroundBlur/BackgroundBlur";
 
 const textList = [
   "Hello",
@@ -38,12 +39,10 @@ const LoadingScreen = ({ fadeOut }: LoadingScreenProps) => {
       className={`${styles.wrapper} ${
         sfuCentury.className
       } fixed inset-0 flex flex-col justify-center items-center z-50 transition-all duration-3000 ease-in-out ${
-        fadeOut
-          ? "opacity-0 pointer-events-none -translate-y-full"
-          : "opacity-100 translate-y-0"
+        fadeOut ? "opacity-0 pointer-events-none" : "opacity-100 translate-y-0"
       }`}
     >
-      {/* <BackgroundBlur /> */}
+      <BackgroundBlur position="absolute" />
       <p className={styles.text}>{text}</p>
     </div>
   );
