@@ -62,7 +62,6 @@ const Works = () => {
           start: "top bottom-=300px",
           end: "start+=300px bottom",
           scrub: 1,
-          markers: true,
         },
       });
 
