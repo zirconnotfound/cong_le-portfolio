@@ -25,7 +25,7 @@ const About = () => {
 
   // 👇 In-view detection
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
   // once:true → only trigger once when scrolling down
 
   return (
@@ -33,8 +33,8 @@ const About = () => {
       ref={ref}
       id="about"
       className={`${styles["wrapper"]} ${swiss.className}`}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}} // will not reset when scrolling up
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}} // will not reset when scrolling up
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div
