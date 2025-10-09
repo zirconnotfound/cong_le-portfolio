@@ -59,10 +59,9 @@ const Works = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapperRef.current,
-          start: "top bottom",
+          start: "top bottom-=300px",
           end: "start+=300px bottom",
           scrub: 1,
-          markers: true,
         },
       });
 
