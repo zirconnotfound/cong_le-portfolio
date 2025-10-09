@@ -28,3 +28,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Prevent scrolling before hydration or while explicitly locked */
+.no-scroll-before-hydration,
+.no-scroll {
+  overflow: hidden !important;
+  touch-action: none !important;
+}

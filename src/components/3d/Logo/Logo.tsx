@@ -18,8 +18,26 @@ const Logo = forwardRef((props: any, ref: React.ForwardedRef<THREE.Group>) => {
           (obj as THREE.Mesh).geometry.dispose();
         if ((obj as THREE.Mesh).material) {
           const mat = (obj as THREE.Mesh).material;
-          if (Array.isArray(mat)) mat.forEach((m) => m.dispose());
-          else mat.dispose();
+          const disposeMaterial = (m: any) => {
+            // dispose textures on the material
+            [
+              "map",
+              "envMap",
+              "aoMap",
+              "normalMap",
+              "roughnessMap",
+              "metalnessMap",
+              "emissiveMap",
+            ].forEach((key) => {
+              if (m[key] && m[key].dispose) {
+                m[key].dispose();
+              }
+            });
+            if (m.dispose) m.dispose();
+          };
+
+          if (Array.isArray(mat)) mat.forEach((m) => disposeMaterial(m));
+          else disposeMaterial(mat);
         }
       });
     };

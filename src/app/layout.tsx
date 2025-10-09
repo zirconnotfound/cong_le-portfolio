@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Webver",
@@ -36,12 +37,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+    <html lang="en" className={`no-scroll-before-hydration antialiased`}>
+      <body>
+        {/* Prevent browser restoring scroll and lock scroll before hydration */}
+        <Script id="scroll-restoration" strategy="beforeInteractive">
+          {`try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; document.documentElement.classList.add('no-scroll-before-hydration') }catch(e){} `}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
