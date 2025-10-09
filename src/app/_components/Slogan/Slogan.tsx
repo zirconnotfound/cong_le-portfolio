@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Slogan.module.scss";
 import SlideIn from "./components/SlideIn/SlideIn";
 
@@ -17,6 +18,7 @@ const Slogan = ({ onToggle }: SloganProps) => {
   const triggeredRef = useRef<boolean>(false);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     tlRef.current = gsap.timeline({ paused: true });
     tlRef.current.to(connectorRef.current, {
       backgroundColor: "#000",
@@ -33,10 +35,17 @@ const Slogan = ({ onToggle }: SloganProps) => {
 
       if (middleY <= viewportMiddle && !triggeredRef.current) {
         tlRef.current.play();
+        // refresh ScrollTrigger positions since layout/style changed
+        try {
+          ScrollTrigger.refresh();
+        } catch (e) {}
         triggeredRef.current = true;
         onToggle(true);
       } else if (middleY > viewportMiddle && triggeredRef.current) {
         tlRef.current.reverse();
+        try {
+          ScrollTrigger.refresh();
+        } catch (e) {}
         triggeredRef.current = false;
         onToggle(false);
       }

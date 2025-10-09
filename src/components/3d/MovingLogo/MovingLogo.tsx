@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { a, useSpring } from "@react-spring/three";
 import * as THREE from "three";
 import { Environment, Lightformer } from "@react-three/drei";
@@ -29,6 +29,7 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
 
   return (
     <Canvas
+      frameloop="demand"
       gl={{
         powerPreference: "high-performance",
         antialias: true,
@@ -36,6 +37,8 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
       }}
     >
       <Suspense fallback={null}>
+        {/* invalidate canvas when isClicked changes to trigger a render */}
+        <InvalidateOnChange value={isClicked} />
         {/* <ambientLight intensity={0.3} color="#ffffff" /> */}
         <a.group
           position={position as any}
@@ -57,5 +60,13 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
     </Canvas>
   );
 };
+
+function InvalidateOnChange({ value }: { value: any }) {
+  const { invalidate } = useThree();
+  useEffect(() => {
+    if (invalidate) invalidate();
+  }, [invalidate, value]);
+  return null;
+}
 
 export default MovingLogo;

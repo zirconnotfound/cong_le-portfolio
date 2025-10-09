@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./NavBar.module.scss";
 import { swiss } from "@/fonts";
 import { LiquidGlass } from "@liquidglass/react";
@@ -26,7 +27,14 @@ const NavBar = ({ isBlack }: { isBlack: boolean }) => {
           <Link href="#about" className={styles["about"]}>
             <span className={styles["about-text"]}>About</span>
           </Link>
-          <img className={styles["logo"]} src="/img/logo-1.webp" />
+          <Image
+            className={styles["logo"]}
+            src="/img/logo-1.webp"
+            alt="Webver logo"
+            width={120}
+            height={40}
+            priority={false}
+          />
           <Link href="#works" className={styles["work"]}>
             <span className={styles["work-text"]}>Works</span>
           </Link>

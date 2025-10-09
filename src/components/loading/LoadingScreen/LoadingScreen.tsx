@@ -21,17 +21,13 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ fadeOut }: LoadingScreenProps) => {
   const [text, setText] = useState<string>(textList[0]);
   useEffect(() => {
+    const timers: number[] = [];
     textList.forEach((item, index) => {
-      if (index <= 4) {
-        setTimeout(() => {
-          setText(item);
-        }, 300 * index);
-      } else {
-        setTimeout(() => {
-          setText(item);
-        }, 1200 + 200 * (index - 4));
-      }
+      const delay = index <= 4 ? 300 * index : 1200 + 200 * (index - 4);
+      const id = window.setTimeout(() => setText(item), delay);
+      timers.push(id);
     });
+    return () => timers.forEach((t) => clearTimeout(t));
   }, []);
 
   return (
