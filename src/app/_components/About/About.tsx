@@ -6,11 +6,7 @@ import styles from "./About.module.scss";
 import Description from "./Description/Description";
 import Team from "./Team/Team";
 import { swiss, sfuCentury } from "@/fonts";
-import dynamic from "next/dynamic";
-const MovingLogo = dynamic(
-  () => import("@/components/3d/MovingLogo/MovingLogo"),
-  { ssr: false, loading: () => null }
-);
+import MovingLogo from "@/components/3d/MovingLogo/MovingLogo";
 
 const About = () => {
   const [isAbout, setIsAbout] = useState(true);

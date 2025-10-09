@@ -1,16 +1,14 @@
 import styles from "./BackgroundBlur.module.scss";
 import Image from "next/image";
 
-type positionProps = "relative" | "absolute" | "fixed" | "static" | "sticky";
-
-const BackgroundBlur = ({ position }: { position: positionProps }) => {
+const BackgroundBlur = () => {
   return (
     <Image
       src="/svgs/round-blur.svg"
       alt="Loading"
       width={200}
       height={200}
-      className={`${styles.image} ${position}`}
+      className={styles.image}
     />
   );
 };

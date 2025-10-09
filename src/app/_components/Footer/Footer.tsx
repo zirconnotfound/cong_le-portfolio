@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import styles from "./Footer.module.scss";
 import { sfuCentury, swiss } from "@/fonts";
 
@@ -19,28 +18,13 @@ const Footer = () => {
         </p>
         <div className={styles["socials"]}>
           <i className={styles["social-icon"]}>
-            <Image
-              src="/img/icons/email.webp"
-              alt="Email"
-              width={40}
-              height={40}
-            />
+            <img src="/img/icons/email.webp" alt="Email" />
           </i>
           <i className={styles["social-icon"]}>
-            <Image
-              src="/img/icons/fb.webp"
-              alt="Facebook"
-              width={40}
-              height={40}
-            />
+            <img src="/img/icons/fb.webp" alt="Facebook" />
           </i>
           <i className={styles["social-icon"]}>
-            <Image
-              src="/img/icons/linkedin.webp"
-              alt="LinkedIn"
-              width={40}
-              height={40}
-            />
+            <img src="/img/icons/linkedin.webp" alt="LinkedIn" />
           </i>
         </div>
       </div>
