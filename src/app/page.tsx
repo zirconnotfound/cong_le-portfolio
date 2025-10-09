@@ -67,7 +67,7 @@ export default function Home() {
         className={`items-center justify-items-center min-h-screen transition-opacity duration-700 ease-out relative w-full overflow-x-hidden
           ${isLoading ? "opacity-0" : "opacity-100"} relative z-20`}
       >
-        <div className="relative mt-[100vh] z-20 bg-white overflow-hidden pb-[36px]">
+        <div className="relative mt-[100vh] z-20 bg-white overflow-hidden pb-[25vh]">
           <About />
         </div>
       </div>
