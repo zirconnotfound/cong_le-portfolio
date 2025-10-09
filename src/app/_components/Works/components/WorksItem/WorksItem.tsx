@@ -28,14 +28,13 @@ const WorksItem = ({ index, data, onHover, onLeave }: WorksItemProps) => {
           onClick={() =>
             window.open(data.link, "_blank", "noopener,noreferrer")
           }
+          onMouseMove={onHover}
+          onMouseLeave={onLeave}
         >
           <Image
             src={data.img}
-            width={300}
-            height={200}
+            fill
             alt={data.title}
-            onMouseMove={onHover}
-            onMouseLeave={onLeave}
             className={styles["image"]}
           />
         </div>

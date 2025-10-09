@@ -13,8 +13,11 @@ const Description = () => {
   const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // register plugin once
     gsap.registerPlugin(ScrollTrigger);
+  }, []);
 
+  useEffect(() => {
     const scrollText = scrollTextRef.current;
     const title = titleRef.current;
     const viewHeight = window.innerHeight;
@@ -38,12 +41,54 @@ const Description = () => {
 
       timeline.to(scrollText, { y: yOffset });
 
+      // ensure ScrollTrigger measurements are correct after fonts / full load
+      const onFontsReady = () => {
+        try {
+          ScrollTrigger.refresh();
+        } catch (e) {
+          /* ignore */
+        }
+      };
+      if (typeof document !== "undefined" && "fonts" in document) {
+        // refresh once fonts are ready (prevents layout-shift measuring issues)
+        (document as any).fonts.ready.then(onFontsReady).catch(() => {});
+      }
+      window.addEventListener("load", onFontsReady);
+
+      // watch for body attribute/style/class changes (e.g., loading overlay toggles)
+      let bodyObserver: MutationObserver | null = null;
+      try {
+        if (typeof document !== "undefined" && document.body) {
+          bodyObserver = new MutationObserver(() => {
+            try {
+              ScrollTrigger.refresh();
+            } catch (e) {}
+          });
+          bodyObserver.observe(document.body, {
+            attributes: true,
+            attributeFilter: ["style", "class"],
+          });
+        }
+      } catch (e) {
+        /* ignore */
+      }
+
+      // fallback timed refresh to cover the 3s loader + fade duration
+      const fallbackTimer = window.setTimeout(() => {
+        try {
+          ScrollTrigger.refresh();
+        } catch (e) {}
+      }, 4000);
+
       return () => {
         timeline.kill();
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        window.removeEventListener("load", onFontsReady);
+        if (bodyObserver) bodyObserver.disconnect();
+        clearTimeout(fallbackTimer);
       };
     }
-  });
+  }, []);
   return (
     <div
       className={`${styles["wrapper"]} animate-fade-in transition-all duration-700 ease-out`}

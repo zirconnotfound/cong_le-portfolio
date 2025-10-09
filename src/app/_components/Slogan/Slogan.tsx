@@ -31,7 +31,7 @@ const Slogan = ({ onToggle }: SloganProps) => {
 
       const rect = connectorRef.current.getBoundingClientRect();
       const middleY = rect.top;
-      const viewportMiddle = window.innerHeight;
+      const viewportMiddle = 0;
 
       if (middleY <= viewportMiddle && !triggeredRef.current) {
         tlRef.current.play();

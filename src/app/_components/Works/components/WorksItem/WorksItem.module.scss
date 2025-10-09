@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  min-height: 400px;
+  // min-height: 400px;
   gap: 2rem;
   width: 100%;
 
@@ -8,9 +8,19 @@
     width: 50%;
     padding: 0 1rem;
 
+    /* keep the same aspect ratio as the width/height props (680x485 ≈ 1.40) */
+    aspect-ratio: 680 / 485;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
     .image {
-      width: auto;
+      /* show the entire image (no cropping) */
+      width: 100%;
       height: 100%;
+      object-fit: contain;
+      display: block;
+      background-color: transparent; /* optional letterbox bg */
     }
   }
 

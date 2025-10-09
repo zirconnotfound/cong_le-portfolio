@@ -31,8 +31,8 @@ const NavBar = ({ isBlack }: { isBlack: boolean }) => {
             className={styles["logo"]}
             src="/img/logo-1.webp"
             alt="Webver logo"
-            width={120}
-            height={40}
+            width={71}
+            height={42}
             priority={false}
           />
           <Link href="#works" className={styles["work"]}>
