@@ -33,7 +33,8 @@ const WorksItem = ({ index, data, onHover, onLeave }: WorksItemProps) => {
         >
           <Image
             src={data.img}
-            fill
+            width={680}
+            height={485}
             alt={data.title}
             className={styles["image"]}
           />

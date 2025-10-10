@@ -57,7 +57,7 @@ export default function Home() {
   return (
     <>
       {isLoading ? <LoadingScreen fadeOut={isFadeout} /> : null}
-      <div className="fixed top-0 left-0 w-full z-10 flex flex-col items-center justify-center mt-[5rem]">
+      <div className="fixed top-0 left-0 w-full z-10 flex flex-col items-center justify-center mt-[4rem]">
         <Hero />
         <RotatingLogo />
       </div>
