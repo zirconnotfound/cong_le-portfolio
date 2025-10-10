@@ -1,12 +1,11 @@
 "use client";
 
 import WorksItem from "./components/WorksItem/WorksItem";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useState } from "react";
 import { sfuCentury } from "@/fonts";
 import styles from "./Works.module.scss";
 import { LiquidGlass } from "@liquidglass/react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export type ItemProps = {
   title: string;
@@ -43,65 +42,36 @@ const worksList: ItemProps[] = [
 ];
 
 const Works = () => {
-  const [tooltip, setTooltip] = useState<{
-    x: number;
-    y: number;
-  } | null>(null);
-
+  const [tooltip, setTooltip] = useState<{ x: number; y: number } | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const titleRef = useRef<HTMLDivElement | null>(null);
 
-  console.log(tooltip);
+  // Observe scroll progress relative to the section
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start 0.4", "start 0"],
+  });
 
-  useEffect(() => {
-    if (wrapperRef.current && titleRef.current) {
-      gsap.registerPlugin(ScrollTrigger);
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          start: "top bottom-=300px",
-          end: "start+=300px bottom",
-          scrub: 1,
-        },
-      });
-
-      const wordList = titleRef.current.querySelectorAll(
-        ":scope > div > div > p"
-      );
-
-      console.log(wordList);
-
-      wordList.forEach((word, index) => {
-        tl.fromTo(
-          word,
-          {
-            y: 90,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            ease: "none",
-          },
-          "<"
-        );
-      });
-    }
-  }, []);
+  // Map scroll progress (0 → 1) to motion values
+  const y = useTransform(scrollYProgress, [0, 1], [90, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <>
       <div className={styles["wrapper"]} id="works" ref={wrapperRef}>
-        <div
-          className={`${styles["title-container"]} ${sfuCentury.className}`}
-          ref={titleRef}
-        >
+        <div className={`${styles["title-container"]} ${sfuCentury.className}`}>
           <div className={styles["title"]}>
             <div className={styles["title-line"]}>
-              <p className={styles["title-text"]}>Our works</p>
+              <motion.p
+                className={styles["title-text"]}
+                style={{ y, opacity }}
+                transition={{ ease: "linear" }}
+              >
+                Our works
+              </motion.p>
             </div>
           </div>
         </div>
+
         <div className={styles["work-list"]}>
           {worksList.map((item, index) => (
             <WorksItem
@@ -109,7 +79,6 @@ const Works = () => {
               index={index}
               data={item}
               onHover={(e: any) => {
-                // use viewport coordinates so tooltip can be fixed and follow cursor
                 const cx = e.clientX ?? e.pageX ?? 0;
                 const cy = e.clientY ?? e.pageY ?? 0;
                 setTooltip({ x: cx, y: cy });
@@ -119,6 +88,7 @@ const Works = () => {
           ))}
         </div>
       </div>
+
       <div
         className={styles["tooltip-div"]}
         style={
@@ -140,10 +110,6 @@ const Works = () => {
           blur={4}
           contrast={0.8}
           brightness={1.2}
-          saturation={1}
-          shadowIntensity={0.2}
-          displacementScale={1.4}
-          elasticity={0.5}
         >
           <div className={styles["tooltip"]}>
             <p className={styles["tooltip-text"]}>Details</p>
