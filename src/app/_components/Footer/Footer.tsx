@@ -47,7 +47,7 @@ const Footer = () => {
       <div className={styles["footer-content"]}>
         <div className={styles["container"]}>
           <p className={`${styles["text"]} ${swiss.className}`}>
-            Let's create together
+            Let&apos;s create together
           </p>
           <p className={`${styles["contact"]} ${sfuCentury.className}`}>
             Contact us

@@ -8,7 +8,7 @@ import { sfuCentury, swiss } from "@/fonts";
 type WorksItemProps = {
   index: number;
   data: ItemProps;
-  onHover: (e: any) => void;
+  onHover: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onLeave: () => void;
 };
 

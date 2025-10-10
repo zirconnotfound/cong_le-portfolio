@@ -38,14 +38,14 @@ const Slogan = ({ onToggle }: SloganProps) => {
         // refresh ScrollTrigger positions since layout/style changed
         try {
           ScrollTrigger.refresh();
-        } catch (e) {}
+        } catch {}
         triggeredRef.current = true;
         onToggle(true);
       } else if (middleY > viewportMiddle && triggeredRef.current) {
         tlRef.current.reverse();
         try {
           ScrollTrigger.refresh();
-        } catch (e) {}
+        } catch {}
         triggeredRef.current = false;
         onToggle(false);
       }
@@ -56,7 +56,7 @@ const Slogan = ({ onToggle }: SloganProps) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [onToggle]);
   return (
     <div className={styles["connector"]} ref={connectorRef}>
       <div className={styles["slogan-container"]}>

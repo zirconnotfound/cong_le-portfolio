@@ -1,6 +1,7 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Canvas, useThree } from "@react-three/fiber";
 import { Suspense, useRef, useState, useEffect } from "react";
-("use client");
 import Image from "next/image";
 import Logo from "../Logo/Logo";
 import { Environment } from "@react-three/drei";
@@ -56,15 +57,16 @@ const RotatingLogo = () => {
     if (inView) {
       try {
         // dynamic import so this runs only on client
-        const drei = require("@react-three/drei");
-        if (
-          drei &&
-          drei.useGLTF &&
-          typeof drei.useGLTF.preload === "function"
-        ) {
-          drei.useGLTF.preload("/gltf/logo.glb");
-        }
-      } catch (e) {
+        import("@react-three/drei").then((drei) => {
+          if (
+            drei &&
+            (drei as any).useGLTF &&
+            typeof (drei as any).useGLTF.preload === "function"
+          ) {
+            (drei as any).useGLTF.preload("/gltf/logo.glb");
+          }
+        });
+      } catch {
         // ignore if preload fails
       }
     }

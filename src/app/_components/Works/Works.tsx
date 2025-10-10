@@ -78,9 +78,9 @@ const Works = () => {
               key={index}
               index={index}
               data={item}
-              onHover={(e: any) => {
-                const cx = e.clientX ?? e.pageX ?? 0;
-                const cy = e.clientY ?? e.pageY ?? 0;
+              onHover={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                const cx = e.clientX ?? 0;
+                const cy = e.clientY ?? 0;
                 setTooltip({ x: cx, y: cy });
               }}
               onLeave={() => setTooltip(null)}

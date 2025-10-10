@@ -45,13 +45,13 @@ const Description = () => {
       const onFontsReady = () => {
         try {
           ScrollTrigger.refresh();
-        } catch (e) {
+        } catch {
           /* ignore */
         }
       };
       if (typeof document !== "undefined" && "fonts" in document) {
         // refresh once fonts are ready (prevents layout-shift measuring issues)
-        (document as any).fonts.ready.then(onFontsReady).catch(() => {});
+        document.fonts.ready.then(onFontsReady).catch(() => {});
       }
       window.addEventListener("load", onFontsReady);
 
@@ -62,14 +62,14 @@ const Description = () => {
           bodyObserver = new MutationObserver(() => {
             try {
               ScrollTrigger.refresh();
-            } catch (e) {}
+            } catch {}
           });
           bodyObserver.observe(document.body, {
             attributes: true,
             attributeFilter: ["style", "class"],
           });
         }
-      } catch (e) {
+      } catch {
         /* ignore */
       }
 

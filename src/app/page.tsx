@@ -46,16 +46,23 @@ export default function Home() {
       try {
         document.documentElement.classList.remove("no-scroll-before-hydration");
         document.documentElement.classList.remove("no-scroll");
-      } catch (e) {}
+      } catch {}
 
       // refresh GSAP ScrollTrigger measurements after layout stabilizes
       try {
         // lazy-import to avoid bundling gsap on server
-        const gsap = require("gsap");
-        if (gsap && gsap.ScrollTrigger) {
-          gsap.ScrollTrigger.refresh();
-        }
-      } catch (e) {
+        import("gsap").then((mod) => {
+          const gsap = mod as unknown as {
+            ScrollTrigger?: { refresh?: () => void };
+          };
+          if (
+            gsap.ScrollTrigger &&
+            typeof gsap.ScrollTrigger.refresh === "function"
+          ) {
+            gsap.ScrollTrigger.refresh();
+          }
+        });
+      } catch {
         /* ignore if gsap isn't present */
       }
     }

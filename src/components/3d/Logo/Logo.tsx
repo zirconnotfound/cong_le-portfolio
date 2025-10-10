@@ -1,11 +1,14 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useGLTF } from "@react-three/drei";
 import { useEffect, forwardRef, useMemo } from "react";
 import * as THREE from "three";
 
-const Logo = forwardRef((props: any, ref: React.ForwardedRef<THREE.Group>) => {
-  const original = useGLTF("/gltf/logo.glb");
+type LogoProps = Record<string, unknown>;
+
+const Logo = forwardRef<THREE.Group, LogoProps>(function Logo(props, ref) {
+  const original = useGLTF("/gltf/logo.glb") as any;
   const cloned = useMemo(() => original.scene.clone(), [original]);
 
   useEffect(() => {
@@ -15,7 +18,7 @@ const Logo = forwardRef((props: any, ref: React.ForwardedRef<THREE.Group>) => {
     cloned.position.sub(center);
 
     return () => {
-      cloned.traverse((obj) => {
+      cloned.traverse((obj: THREE.Object3D) => {
         if ((obj as THREE.Mesh).geometry)
           (obj as THREE.Mesh).geometry.dispose();
         if ((obj as THREE.Mesh).material) {
@@ -51,5 +54,8 @@ const Logo = forwardRef((props: any, ref: React.ForwardedRef<THREE.Group>) => {
     </group>
   );
 });
+
+// set displayName explicitly for React devtools and to satisfy ESLint
+(Logo as unknown as { displayName?: string }).displayName = "Logo";
 
 export default Logo;

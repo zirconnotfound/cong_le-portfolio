@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { sfuCentury } from "@/fonts";
 import styles from "./LoadingScreen.module.scss";
 import BackgroundBlur from "@/components/layout/BackgroundBlur/BackgroundBlur";
