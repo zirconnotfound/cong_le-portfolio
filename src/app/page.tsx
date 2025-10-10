@@ -1,17 +1,26 @@
 "use client";
+import dynamic from "next/dynamic";
 import LoadingScreen from "@/components/loading/LoadingScreen/LoadingScreen";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import Hero from "./_components/Hero/Hero";
+
 const RotatingLogo = dynamic(
   () => import("@/components/3d/RotatingLogo/RotatingLogo"),
   { ssr: false, loading: () => null }
 );
 
-import About from "./_components/About/About";
-import Works from "./_components/Works/Works";
-import Footer from "./_components/Footer/Footer";
-import { useGLTF } from "@react-three/drei";
+const About = dynamic(() => import("./_components/About/About"), {
+  ssr: false,
+  loading: () => null,
+});
+const Works = dynamic(() => import("./_components/Works/Works"), {
+  ssr: false,
+  loading: () => null,
+});
+const Footer = dynamic(() => import("./_components/Footer/Footer"), {
+  ssr: false,
+  loading: () => null,
+});
 import NavBar from "@/components/layout/NavBar/NavBar";
 import Slogan from "./_components/Slogan/Slogan";
 
@@ -19,8 +28,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFadeout, setIsFadeout] = useState(false);
   const [isBlack, setIsBlack] = useState(false);
-
-  useGLTF.preload("/gltf/logo.glb");
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -1,3 +1,5 @@
+"use client";
+
 import { useGLTF } from "@react-three/drei";
 import { useEffect, forwardRef, useMemo } from "react";
 import * as THREE from "three";
@@ -49,7 +51,5 @@ const Logo = forwardRef((props: any, ref: React.ForwardedRef<THREE.Group>) => {
     </group>
   );
 });
-
-useGLTF.preload("/gltf/logo.glb");
 
 export default Logo;

@@ -1,5 +1,6 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useRef, useState, useEffect } from "react";
+("use client");
 import Image from "next/image";
 import Logo from "../Logo/Logo";
 import { Environment } from "@react-three/drei";
@@ -51,6 +52,22 @@ const RotatingLogo = () => {
 
   useEffect(() => {
     if (inView) setHasEntered(true);
+    // when the logo comes into view, preload the gltf model from drei
+    if (inView) {
+      try {
+        // dynamic import so this runs only on client
+        const drei = require("@react-three/drei");
+        if (
+          drei &&
+          drei.useGLTF &&
+          typeof drei.useGLTF.preload === "function"
+        ) {
+          drei.useGLTF.preload("/gltf/logo.glb");
+        }
+      } catch (e) {
+        // ignore if preload fails
+      }
+    }
   }, [inView]);
 
   return (
