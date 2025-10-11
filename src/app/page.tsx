@@ -34,8 +34,8 @@ export default function Home() {
       setIsFadeout(true);
       setTimeout(() => {
         setIsLoading(false);
-      }, 700);
-    }, 2300);
+      }, 1500);
+    }, 4100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -60,6 +60,19 @@ export default function Home() {
             typeof gsap.ScrollTrigger.refresh === "function"
           ) {
             gsap.ScrollTrigger.refresh();
+            // Also dispatch a synthetic scroll/resize after layout stabilizes so
+            // libraries that measure scroll/element positions (eg. Framer Motion's
+            // useScroll) recompute their values. Some measurements are only
+            // updated on scroll/resize events.
+            try {
+              // Defer to the next frame to let layout complete
+              requestAnimationFrame(() => {
+                try {
+                  window.dispatchEvent(new Event("resize"));
+                  window.dispatchEvent(new Event("scroll"));
+                } catch {}
+              });
+            } catch {}
           }
         });
       } catch {

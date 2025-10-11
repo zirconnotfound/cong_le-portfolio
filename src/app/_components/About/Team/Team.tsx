@@ -53,18 +53,6 @@ const Team = () => {
   return (
     <div className={styles["wrapper"]}>
       <div className={styles["team-wrapper"]}>
-        <div className={`${styles["team-list"]} ${swiss.className}`}>
-          {teamData.map((member, index) => (
-            <div
-              key={index}
-              className={`${styles["team-member"]} opacity-50 hover:opacity-100 transform transition duration-300 ease-in-out hover:translate-x-10 cursor-pointer`}
-              onMouseEnter={() => handleTeamMemberHover(index)}
-              onMouseLeave={handleTeamMemberOut}
-            >
-              <p className={styles["member-name"]}>{member.name}</p>
-            </div>
-          ))}
-        </div>
         <div className={styles["team-details"]}>
           {teamIndex !== null ? (
             <>
@@ -117,6 +105,20 @@ const Team = () => {
           ) : (
             <></>
           )}
+        </div>
+        <div className={styles["team-list-wrapper"]}>
+          <div className={`${styles["team-list"]} ${swiss.className}`}>
+            {teamData.map((member, index) => (
+              <div
+                key={index}
+                className={`${styles["team-member"]} opacity-50 hover:opacity-100 transform transition duration-300 ease-in-out hover:translate-x-10 cursor-pointer`}
+                onMouseEnter={() => handleTeamMemberHover(index)}
+                onMouseLeave={handleTeamMemberOut}
+              >
+                <p className={styles["member-name"]}>{member.name}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

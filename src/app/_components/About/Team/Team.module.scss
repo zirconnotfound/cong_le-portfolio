@@ -8,21 +8,28 @@
   .team-wrapper {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row-reverse;
+    gap: 70px;
 
-    .team-list {
-      color: #171717;
-      font-size: 70px;
-      font-weight: 700;
-      // padding-top: 10vh;
+    .team-list-wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+      // align-items: flex-end;
 
-      .team-member {
-        :hover .member-name {
-          transform: translateX(10%);
-        }
+      .team-list {
+        color: #171717;
+        font-size: 52px;
+        font-weight: 700;
+        padding: 58px 0;
 
-        .member-name {
-          transition: transform 0.3s ease-in-out;
+        .team-member {
+          :hover .member-name {
+            transform: translateX(10%);
+          }
+
+          .member-name {
+            transition: transform 0.3s ease-in-out;
+          }
         }
       }
     }

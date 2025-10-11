@@ -8,24 +8,20 @@
     width: 680px;
     height: 485px;
     padding: 0 1rem;
-
-    /* keep the same aspect ratio as the width/height props (680x485 ≈ 1.40) */
     aspect-ratio: 680 / 485;
     position: relative;
     overflow: hidden;
     cursor: pointer;
 
-    /* make the internal <img> fill the wrapper exactly and align its bottom edge
-       so the 'foot' of the image touches the bottom of the parent */
     .image,
     img {
       position: absolute;
-      inset: 0; /* top:0; right:0; bottom:0; left:0 */
+      inset: 0;
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: contain; /* fill while preserving aspect ratio */
-      object-position: bottom center; /* align image bottom to wrapper bottom */
+      object-fit: contain;
+      object-position: bottom center;
       background-color: transparent;
     }
   }
@@ -54,7 +50,6 @@
         line-height: 100%;
         letter-spacing: 0%;
         color: #171717;
-        // color: #ffffff;
       }
     }
 

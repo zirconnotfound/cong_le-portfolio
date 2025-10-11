@@ -14,7 +14,7 @@ const SlideIn = ({ firstLine, secondLine }: SlideInProps) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 1.3", "start 0.4"],
+    offset: ["start 1.3", "start 0"],
   });
 
   const x1 = useTransform(scrollYProgress, [0, 1], ["-100%", "0%"]);

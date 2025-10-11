@@ -48,7 +48,7 @@ const Works = () => {
   // Observe scroll progress relative to the section
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
-    offset: ["start 0.4", "start 0"],
+    offset: ["start 0.7", "start 0"],
   });
 
   // Map scroll progress (0 → 1) to motion values

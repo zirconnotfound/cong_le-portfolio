@@ -23,7 +23,7 @@ const LoadingScreen = ({ fadeOut }: LoadingScreenProps) => {
   useEffect(() => {
     const timers: number[] = [];
     textList.forEach((item, index) => {
-      const delay = index <= 4 ? 300 * index : 1200 + 200 * (index - 4);
+      const delay = index <= 4 ? 500 * index : 2000 + 400 * (index - 4);
       const id = window.setTimeout(() => setText(item), delay);
       timers.push(id);
     });
@@ -32,10 +32,8 @@ const LoadingScreen = ({ fadeOut }: LoadingScreenProps) => {
 
   return (
     <div
-      className={`${styles.wrapper} ${
-        sfuCentury.className
-      } fixed inset-0 flex flex-col justify-center items-center z-50 transition-all duration-3000 ease-in-out ${
-        fadeOut ? "opacity-0 pointer-events-none" : "opacity-100 translate-y-0"
+      className={`${styles.wrapper} ${sfuCentury.className} ${
+        fadeOut ? styles.fadeOut : styles.visible
       }`}
     >
       <BackgroundBlur position="absolute" />
