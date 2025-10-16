@@ -1,6 +1,7 @@
 import styles from "./Description.module.scss";
 import { sfuCentury, swiss } from "@/fonts";
 import gsap from "gsap";
+import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import Paragraph from "./components/Paragraph/Paragraph";
@@ -13,8 +14,12 @@ const Description = () => {
   const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // register plugin once
     gsap.registerPlugin(ScrollTrigger);
+
+    const lenis = new Lenis();
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
   }, []);
 
   useEffect(() => {
