@@ -23,6 +23,7 @@ const Footer = dynamic(() => import("./_components/Footer/Footer"), {
 });
 import NavBar from "@/components/layout/NavBar/NavBar";
 import Slogan from "./_components/Slogan/Slogan";
+import Process from "./_components/Process/Process";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,33 +41,33 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    // remove pre-hydration no-scroll lock once loading finished so layout stabilizes
-    if (!isLoading) {
-      try {
-        document.documentElement.classList.remove("no-scroll-before-hydration");
-        document.documentElement.classList.remove("no-scroll");
-      } catch {}
+  // useEffect(() => {
+  //   // remove pre-hydration no-scroll lock once loading finished so layout stabilizes
+  //   if (!isLoading) {
+  //     try {
+  //       document.documentElement.classList.remove("no-scroll-before-hydration");
+  //       document.documentElement.classList.remove("no-scroll");
+  //     } catch {}
 
-      // refresh GSAP ScrollTrigger measurements after layout stabilizes
-      try {
-        // lazy-import to avoid bundling gsap on server
-        import("gsap").then((mod) => {
-          const gsap = mod as unknown as {
-            ScrollTrigger?: { refresh?: () => void };
-          };
-          if (
-            gsap.ScrollTrigger &&
-            typeof gsap.ScrollTrigger.refresh === "function"
-          ) {
-            gsap.ScrollTrigger.refresh();
-          }
-        });
-      } catch {
-        /* ignore if gsap isn't present */
-      }
-    }
-  }, [isLoading]);
+  //     // refresh GSAP ScrollTrigger measurements after layout stabilizes
+  //     try {
+  //       // lazy-import to avoid bundling gsap on server
+  //       import("gsap").then((mod) => {
+  //         const gsap = mod as unknown as {
+  //           ScrollTrigger?: { refresh?: () => void };
+  //         };
+  //         if (
+  //           gsap.ScrollTrigger &&
+  //           typeof gsap.ScrollTrigger.refresh === "function"
+  //         ) {
+  //           gsap.ScrollTrigger.refresh();
+  //         }
+  //       });
+  //     } catch {
+  //       /* ignore if gsap isn't present */
+  //     }
+  //   }
+  // }, [isLoading]);
 
   return (
     <>
@@ -87,6 +88,7 @@ export default function Home() {
       </div>
       <div className="z-20 bg-white relative">
         <Works />
+        <Process />
         <Slogan onToggle={setIsBlack} />
         <Footer />
       </div>

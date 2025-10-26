@@ -35,3 +35,20 @@ body {
   overflow: hidden !important;
   touch-action: none !important;
 }
+
+/* Hide scrollbar UI globally but keep scrolling enabled */
+html,
+body {
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE 10+ */
+  -ms-overflow-style: none;
+}
+
+/* Webkit browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}

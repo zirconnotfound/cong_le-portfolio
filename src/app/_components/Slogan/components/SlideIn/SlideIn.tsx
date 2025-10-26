@@ -14,11 +14,11 @@ const SlideIn = ({ firstLine, secondLine }: SlideInProps) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 1.3", "start 0"],
+    offset: ["start 1.3", "start -1"],
   });
 
-  const x1 = useTransform(scrollYProgress, [0, 1], ["-100%", "0%"]);
-  const x2 = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
+  const x1 = useTransform(scrollYProgress, [0, 1], ["-100%", "100%"]);
+  const x2 = useTransform(scrollYProgress, [0, 1], ["100%", "-100%"]);
   return (
     <div ref={ref} className={`${styles["container"]} ${sfuCentury.className}`}>
       <div className={`${styles["line"]} ${styles["first-line"]}`}>
