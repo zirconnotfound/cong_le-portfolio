@@ -77,7 +77,7 @@ export default function Home() {
         <RotatingLogo />
       </div>
 
-      <NavBar isBlack={isBlack} />
+      {isLoading ? null : <NavBar isBlack={isBlack} />}
       <div
         className={`items-center justify-items-center min-h-screen transition-opacity duration-700 ease-out relative w-full overflow-x-hidden
           ${isLoading ? "opacity-0" : "opacity-100"} relative z-20`}

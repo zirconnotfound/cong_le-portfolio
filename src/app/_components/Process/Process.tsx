@@ -91,7 +91,7 @@ const Process = () => {
   }, []);
 
   return (
-    <div className={styles["wrapper"]}>
+    <div className={styles["wrapper"]} id="process">
       <div className={styles["title"]}>
         <p className={`${styles["title-content"]} ${sfuCentury.className}`}>
           Our process

@@ -1,50 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import styles from "./NavBar.module.scss";
 import { swiss } from "@/fonts";
-import { LiquidGlass } from "@liquidglass/react";
 
 const NavBar = ({ isBlack }: { isBlack: boolean }) => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    // allow one frame so CSS transition runs
+    requestAnimationFrame(() => setVisible(true));
+  }, []);
+
   return (
     <div
       className={`${styles["navigation"]} ${swiss.className} ${
         isBlack ? styles["black"] : styles["white"]
-      }`}
+      } ${visible ? styles.visible : ""}`}
     >
-      <div className={styles["center-nav"]}>
-        <LiquidGlass
-          borderRadius={200}
-          blur={2}
-          contrast={1.2}
-          brightness={1.05}
-          saturation={1}
-          shadowIntensity={0.02}
-          displacementScale={1.4}
-          elasticity={0.5}
-        >
-          <Link href="#about" className={styles["about"]}>
-            <span className={styles["about-text"]}>About</span>
-          </Link>
-          <Image
-            className={styles["logo"]}
-            src="/img/logo-1.webp"
-            alt="Webver logo"
-            width={71}
-            height={42}
-            priority={false}
-          />
-          <Link href="#works" className={styles["work"]}>
-            <span className={styles["work-text"]}>Works</span>
-          </Link>
-        </LiquidGlass>
-      </div>
-      <div className={styles["right-nav"]}>
-        <Link href="#contact" className={styles["contact"]}>
-          <span className={styles["contact-text"]}>Contact</span>
-        </Link>
-      </div>
+      <Link href="#about" className={styles["about"]}>
+        <span className={styles["about-text"]}>About</span>
+      </Link>
+      <Link href="#works" className={styles["work"]}>
+        <span className={styles["work-text"]}>Works</span>
+      </Link>
+      <Link href="#process" className={styles["process"]}>
+        <span className={styles["process-text"]}>Process</span>
+      </Link>
+      <Link href="#contact" className={styles["contact"]}>
+        <span className={styles["contact-text"]}>Contact</span>
+      </Link>
     </div>
   );
 };
