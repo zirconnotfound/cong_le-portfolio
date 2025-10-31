@@ -53,7 +53,6 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
             start: `top+=${(i - 1) * height + yOffset} top`,
             end: `+=${height * 0.8}`,
             scrub: true,
-            markers: true,
           },
         });
       });

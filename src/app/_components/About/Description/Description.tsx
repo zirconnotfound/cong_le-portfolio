@@ -26,73 +26,43 @@ const Description = () => {
     const scrollText = scrollTextRef.current;
     const title = titleRef.current;
     const viewHeight = window.innerHeight;
+    let mounted = true;
 
-    if (scrollText && title) {
-      const yOffset = (title.offsetHeight / 3) * 2;
-      const distance = 0.7 * viewHeight - title.offsetHeight;
+    const init = async () => {
+      await new Promise((r) => requestAnimationFrame(r));
+      await new Promise((r) => requestAnimationFrame(r));
+      await new Promise((r) => setTimeout(r, 3500));
+      if (!mounted) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollText,
-          start: "top bottom-=" + scrollText.offsetHeight / 2,
-          end: "bottom bottom-=" + distance,
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-        defaults: {
-          ease: "none",
-        },
-      });
+      if (scrollText && title) {
+        const yOffset = (title.offsetHeight / 3) * 2;
+        const distance = 0.7 * viewHeight - title.offsetHeight;
 
-      timeline.to(scrollText, { y: yOffset });
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: scrollText,
+            start: "top bottom-=" + scrollText.offsetHeight / 2,
+            end: "bottom bottom-=" + distance,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          defaults: {
+            ease: "none",
+          },
+        });
 
-      // ensure ScrollTrigger measurements are correct after fonts / full load
-      const onFontsReady = () => {
-        try {
-          ScrollTrigger.refresh();
-        } catch {
-          /* ignore */
-        }
-      };
-      if (typeof document !== "undefined" && "fonts" in document) {
-        // refresh once fonts are ready (prevents layout-shift measuring issues)
-        document.fonts.ready.then(onFontsReady).catch(() => {});
+        timeline.to(scrollText, { y: yOffset });
+
+        ScrollTrigger.refresh();
       }
-      window.addEventListener("load", onFontsReady);
+    };
 
-      // watch for body attribute/style/class changes (e.g., loading overlay toggles)
-      let bodyObserver: MutationObserver | null = null;
-      try {
-        if (typeof document !== "undefined" && document.body) {
-          bodyObserver = new MutationObserver(() => {
-            try {
-              ScrollTrigger.refresh();
-            } catch {}
-          });
-          bodyObserver.observe(document.body, {
-            attributes: true,
-            attributeFilter: ["style", "class"],
-          });
-        }
-      } catch {
-        /* ignore */
-      }
+    init();
 
-      // fallback timed refresh to cover the 3s loader + fade duration
-      const fallbackTimer = window.setTimeout(() => {
-        try {
-          ScrollTrigger.refresh();
-        } catch (e) {}
-      }, 4000);
-
-      return () => {
-        timeline.kill();
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        window.removeEventListener("load", onFontsReady);
-        if (bodyObserver) bodyObserver.disconnect();
-        clearTimeout(fallbackTimer);
-      };
-    }
+    return () => {
+      mounted = false;
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
   return (
     <div
