@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import Lenis from "lenis";
 import { useRef, useEffect } from "react";
 import styles from "./ImageFrame.module.scss";
@@ -28,7 +29,6 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
 
       const yOffset = window.innerHeight * 0.1;
       const height = window.innerHeight;
-      const gap = 0;
 
       const lenis = new Lenis();
       lenis.on("scroll", ScrollTrigger.update);
@@ -39,7 +39,6 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
 
       const container = containerRef.current;
       const layers = Array.from(container.children) as HTMLElement[];
-      const total = layers.length;
 
       gsap.set(layers[0], { clipPath: "inset(0% 0% 0% 0%)" });
 
@@ -63,17 +62,24 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
     };
 
     init();
+
+    return () => {
+      mounted = false;
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
     <div className={styles["scroll-container"]}>
       <div className={styles["stack"]} ref={containerRef}>
         {imgs.map((src, index) => (
-          <img
+          <Image
             className={styles["layer"]}
             key={index}
             src={src}
             alt={`Image ${index + 1}`}
+            width={100}
+            height={100}
           />
         ))}
       </div>
