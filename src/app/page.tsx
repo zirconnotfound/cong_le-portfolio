@@ -41,6 +41,67 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  // completely lock scrolling while the loading screen is visible
+  useEffect(() => {
+    let savedScrollY = 0;
+    let wheelHandler: (e: Event) => void;
+    let touchHandler: (e: Event) => void;
+    let keyHandler: (e: KeyboardEvent) => void;
+
+    if (isLoading && typeof window !== "undefined") {
+      savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+
+      // prevent scroll via wheel / touch
+      wheelHandler = (e: Event) => e.preventDefault();
+      touchHandler = (e: Event) => e.preventDefault();
+      keyHandler = (e: KeyboardEvent) => {
+        const blocked = [
+          "ArrowUp",
+          "ArrowDown",
+          "PageUp",
+          "PageDown",
+          "Home",
+          "End",
+          " ",
+        ];
+        if (blocked.includes(e.key)) e.preventDefault();
+      };
+
+      // freeze layout at current scroll position
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${savedScrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+      document.documentElement.style.overflow = "hidden";
+
+      window.addEventListener("wheel", wheelHandler, { passive: false });
+      window.addEventListener("touchmove", touchHandler, { passive: false });
+      window.addEventListener("keydown", keyHandler, { passive: false });
+    }
+
+    return () => {
+      // restore scrolling & layout
+      try {
+        window.removeEventListener("wheel", wheelHandler as EventListener);
+        window.removeEventListener("touchmove", touchHandler as EventListener);
+        window.removeEventListener("keydown", keyHandler as any);
+      } catch {}
+
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.documentElement.style.overflow = "";
+
+      // restore previous scroll position
+      if (typeof window !== "undefined") {
+        window.scrollTo(0, savedScrollY);
+      }
+    };
+  }, [isLoading]);
+
   // useEffect(() => {
   //   // remove pre-hydration no-scroll lock once loading finished so layout stabilizes
   //   if (!isLoading) {
