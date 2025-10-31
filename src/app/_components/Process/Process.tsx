@@ -1,12 +1,20 @@
 "use client";
 
-import ProcessItem from "./components/ProcessItem";
+import ProcessItem from "./components/ProcessItem/ProcessItem";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { sfuCentury } from "@/fonts";
 import styles from "./Process.module.scss";
 import { useEffect, useRef } from "react";
+import ImageFrame from "./components/ImageFrame/ImageFrame";
+
+const images = [
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1920&q=80",
+];
 
 const processItems = [
   {
@@ -71,6 +79,7 @@ const Process = () => {
               pin: section,
               pinSpacing: false,
               snap: 1,
+              // markers: true,
             },
           });
 
@@ -98,6 +107,9 @@ const Process = () => {
         </p>
       </div>
       <div className={styles["content"]}>
+        <div className={styles["image-frame-wrapper"]}>
+          <ImageFrame imgs={images} wrapperRef={listWrapperRef} />
+        </div>
         <div className={styles["list-wrapper"]} ref={listWrapperRef}>
           {processItems.map((item) => (
             <ProcessItem

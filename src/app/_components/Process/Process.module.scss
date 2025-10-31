@@ -28,13 +28,21 @@
     height: auto;
     justify-content: center;
     align-items: center;
+    position: relative;
+
+    .image-frame-wrapper {
+      position: absolute;
+      top: 10vh;
+      width: 80%;
+      z-index: -1;
+    }
 
     .list-wrapper {
       width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      // gap: 36px;
     }
   }
 }

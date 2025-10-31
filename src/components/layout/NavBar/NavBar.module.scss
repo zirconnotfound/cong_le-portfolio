@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  color: #00000080;
+  mix-blend-mode: exclusion;
   z-index: 1000;
   font-weight: 700;
   font-size: 1.25rem;
@@ -30,9 +30,9 @@
 }
 
 /* keep existing modifiers */
-.navigation.white {
-  --text-color: #000000;
-}
-.navigation.black {
-  --text-color: #e5e5e5;
-}
+// .navigation.white {
+//   --text-color: #000000;
+// }
+// .navigation.black {
+//   --text-color: #e5e5e5;
+// }

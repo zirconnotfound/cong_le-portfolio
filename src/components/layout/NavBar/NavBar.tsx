@@ -19,17 +19,17 @@ const NavBar = ({ isBlack }: { isBlack: boolean }) => {
         isBlack ? styles["black"] : styles["white"]
       } ${visible ? styles.visible : ""}`}
     >
-      <Link href="#about" className={styles["about"]}>
-        <span className={styles["about-text"]}>About</span>
+      <Link href="#about" className={styles["link"]}>
+        <span className={styles["text"]}>About</span>
       </Link>
-      <Link href="#works" className={styles["work"]}>
-        <span className={styles["work-text"]}>Works</span>
+      <Link href="#works" className={styles["link"]}>
+        <span className={styles["text"]}>Works</span>
       </Link>
-      <Link href="#process" className={styles["process"]}>
-        <span className={styles["process-text"]}>Process</span>
+      <Link href="#process" className={styles["link"]}>
+        <span className={styles["text"]}>Process</span>
       </Link>
-      <Link href="#contact" className={styles["contact"]}>
-        <span className={styles["contact-text"]}>Contact</span>
+      <Link href="#contact" className={styles["link"]}>
+        <span className={styles["text"]}>Contact</span>
       </Link>
     </div>
   );
