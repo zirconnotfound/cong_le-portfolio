@@ -85,7 +85,7 @@ export default function Home() {
       try {
         window.removeEventListener("wheel", wheelHandler as EventListener);
         window.removeEventListener("touchmove", touchHandler as EventListener);
-        window.removeEventListener("keydown", keyHandler as any);
+        window.removeEventListener("keydown", keyHandler as EventListener);
       } catch {}
 
       document.body.style.position = "";

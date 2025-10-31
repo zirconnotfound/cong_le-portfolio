@@ -67,7 +67,7 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
       mounted = false;
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, []);
+  });
 
   return (
     <div className={styles["scroll-container"]}>
