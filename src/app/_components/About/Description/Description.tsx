@@ -6,6 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import Paragraph from "./components/Paragraph/Paragraph";
 
+// extend Window with our in-memory init flags to avoid using `any` casts
+declare global {
+  interface Window {
+    __descriptionInitDone?: boolean;
+    __descriptionInitPromise?: Promise<void>;
+  }
+}
+
 const text =
   "We're fueled by curiosity and creativity. We seek to improve the quality of the built environment with subtle, yet confident designs characterised by clean lines and forms linked inextricably with function. Each design is unique, crafted to add commercial, social and aesthetic value.";
 
@@ -39,26 +47,22 @@ const Description = () => {
       // - React Strict Mode double-mounts share a single promise and won't re-run the timer
       const isClient = typeof window !== "undefined";
       if (isClient) {
-        const doneKey = "__descriptionInitDone";
-        const promiseKey = "__descriptionInitPromise";
-        const globalAny = window as any;
-
-        const alreadyDone = !!globalAny[doneKey];
+        const alreadyDone = !!window.__descriptionInitDone;
         if (!alreadyDone) {
-          if (!globalAny[promiseKey]) {
+          if (!window.__descriptionInitPromise) {
             // create the one-time delay promise and store it on window
-            globalAny[promiseKey] = new Promise<void>((resolve) => {
+            window.__descriptionInitPromise = new Promise<void>((resolve) => {
               const delay = 3400;
               setTimeout(() => {
                 try {
-                  globalAny[doneKey] = true;
+                  window.__descriptionInitDone = true;
                 } catch {}
                 resolve();
               }, delay);
             });
           }
           // wait for the one-time delay to complete (no-op if already resolved)
-          await globalAny[promiseKey];
+          await window.__descriptionInitPromise;
         }
       }
       if (!mounted) return;
