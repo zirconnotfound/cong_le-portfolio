@@ -15,7 +15,7 @@
     z-index: -2;
 
     .title-content {
-      font-size: 120px;
+      font-size: 7.5rem;
       font-weight: 700;
       color: #171717;
     }
@@ -35,6 +35,10 @@
       top: 10vh;
       width: 80%;
       z-index: -1;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
 
     .list-wrapper {

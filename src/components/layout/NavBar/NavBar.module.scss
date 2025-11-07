@@ -29,6 +29,36 @@
   transform: translateY(0);
 }
 
+/* responsive */
+@media (max-width: 1024px) {
+  .navigation {
+    padding: 0.75rem 2rem 0;
+    font-size: 1.05rem;
+    height: 3.75rem;
+  }
+  .text {
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    padding: 0.5rem 1rem 0;
+    font-size: 0.95rem;
+    height: 3.5rem;
+    gap: 8px;
+  }
+
+  /* collapse spacing and wrap links to two rows if needed */
+  .navigation {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .link {
+    margin: 6px 8px;
+  }
+}
+
 /* keep existing modifiers */
 // .navigation.white {
 //   --text-color: #000000;

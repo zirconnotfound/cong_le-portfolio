@@ -52,7 +52,7 @@ const Process = () => {
     const init = async () => {
       await new Promise((r) => requestAnimationFrame(r));
       await new Promise((r) => requestAnimationFrame(r));
-      await new Promise((r) => setTimeout(r, 3000));
+      await new Promise((r) => setTimeout(r, 4000));
       if (!mounted) return;
 
       gsap.registerPlugin(ScrollTrigger);
@@ -79,7 +79,6 @@ const Process = () => {
               pin: section,
               pinSpacing: false,
               snap: 1,
-              // markers: true,
             },
           });
 

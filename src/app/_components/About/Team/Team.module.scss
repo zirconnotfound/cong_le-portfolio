@@ -18,7 +18,7 @@
 
       .team-list {
         color: #171717;
-        font-size: 52px;
+        font-size: 3.25rem;
         font-weight: 700;
         padding: 58px 0;
 
@@ -60,10 +60,64 @@
 
         .member-position {
           color: #866957;
-          font-size: 35px;
+          font-size: 2.1875rem;
           font-weight: 700;
         }
       }
     }
+  }
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+  .team-wrapper {
+    gap: 40px;
+    padding: 0 20px;
+  }
+  .team-list {
+    font-size: 2.5rem;
+  }
+  .member-image {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    padding-left: 16px;
+    margin-right: 0;
+  }
+  .team-wrapper {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .team-list-wrapper {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+  .team-details {
+    order: 1;
+    width: 100%;
+  }
+  .team-list {
+    font-size: 2rem;
+    padding: 24px 0;
+  }
+  .member-image {
+    width: 220px;
+    height: 220px;
+    border-radius: 8px;
+  }
+  .member-info {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .member-position {
+    font-size: 1.25rem;
   }
 }

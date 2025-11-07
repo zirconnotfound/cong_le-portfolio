@@ -1,6 +1,7 @@
 .paragraph {
   color: #171717;
-  font-size: 1.5rem;
+  /* Use central type scale so paragraph text responds to root clamp in globals.css */
+  font-size: clamp(0.75rem, 0.375rem + 1.25vw, 1.5rem);
   font-weight: 700;
   width: 100%;
   display: flex;

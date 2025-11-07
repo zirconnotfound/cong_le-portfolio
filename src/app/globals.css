@@ -3,6 +3,30 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Responsive breakpoints */
+  --bp-desktop: 1200px;
+  --bp-laptop: 1024px;
+  --bp-tablet: 768px;
+  --bp-mobile: 480px;
+
+  /* Scaling tokens */
+  --container-padding: 36px;
+  --container-padding-sm: 20px;
+  --font-scale-large: 1rem; /* base - use rems in components */
+  /* Typographic scale (max values chosen to match current desktop px sizes) */
+  --type-400px: 25rem; /* 400px */
+  --type-130px: 8.125rem; /* 130px */
+  --type-120px: 7.5rem; /* 120px */
+  --type-80px: 5rem; /* 80px */
+  --type-52px: 3.25rem; /* 52px */
+  --type-45px: 2.8125rem; /* 45px */
+  --type-40px: 2.5rem; /* 40px */
+  --type-35px: 2.1875rem; /* 35px */
+  --type-32px: 2rem; /* 32px */
+  --type-26px: 1.625rem; /* 26px */
+  --type-25px: 1.5625rem; /* 25px */
+  --type-20px: 1.25rem; /* 20px */
 }
 
 @theme inline {
@@ -20,6 +44,10 @@
 }
 
 html {
+  /* Responsive root size: keep desktop at ~16px while scaling down on smaller viewports.
+     This ensures existing rem-based sizes keep their desktop appearance but become
+     proportionally smaller on narrow screens. */
+  font-size: clamp(13px, 0.35vw + 13px, 16px);
   scroll-behavior: smooth !important;
 }
 
@@ -27,13 +55,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Prevent scrolling before hydration or while explicitly locked */
-.no-scroll-before-hydration,
-.no-scroll {
-  overflow: hidden !important;
-  touch-action: none !important;
 }
 
 /* Hide scrollbar UI globally but keep scrolling enabled */
@@ -51,4 +72,65 @@ body::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
+}
+
+/* Fluid container helper */
+.container {
+  width: 100%;
+  padding: 0 calc(var(--container-padding));
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Responsive helpers */
+@media (max-width: var(--bp-laptop)) {
+  .container {
+    padding: 0 calc(var(--container-padding-sm));
+  }
+}
+
+/* Image defaults to be responsive when not using next/image */
+img,
+.picture,
+.image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Utility typography variables & helper classes (use rems so everything follows root) */
+:root {
+  --type-xxl: clamp(2.25rem, 6vw, var(--type-400px));
+  --type-xl: clamp(1.75rem, 4vw, var(--type-130px));
+  --type-lg: clamp(1.25rem, 2.5vw, var(--type-80px));
+  --type-md: clamp(1rem, 1.6vw, 1.125rem);
+  --type-sm: clamp(0.875rem, 1.2vw, 1rem);
+  --type-xs: clamp(0.75rem, 1vw, 0.875rem);
+}
+
+.text-xxl {
+  font-size: var(--type-xxl) !important;
+}
+.text-xl {
+  font-size: var(--type-xl) !important;
+}
+.text-lg {
+  font-size: var(--type-lg) !important;
+}
+.text-md {
+  font-size: var(--type-md) !important;
+}
+.text-sm {
+  font-size: var(--type-sm) !important;
+}
+.text-xs {
+  font-size: var(--type-xs) !important;
+}
+
+/* Touch target improvements */
+button,
+a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }

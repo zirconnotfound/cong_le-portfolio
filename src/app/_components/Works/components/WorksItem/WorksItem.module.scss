@@ -1,6 +1,5 @@
 .wrapper {
   display: flex;
-  // min-height: 400px;
   gap: 2rem;
   width: 100%;
 
@@ -38,7 +37,7 @@
 
       .title {
         font-weight: 700;
-        font-size: 45px;
+        font-size: 2.8125rem;
         line-height: 100%;
         letter-spacing: 0%;
         color: #866957;
@@ -46,7 +45,7 @@
 
       .type {
         font-weight: 500;
-        font-size: 25px;
+        font-size: 1.5625rem;
         line-height: 100%;
         letter-spacing: 0%;
         // color: #171717;
@@ -57,5 +56,35 @@
     .link {
       cursor: pointer;
     }
+  }
+}
+
+/* responsive */
+@media (max-width: 1200px) {
+  .image-wrapper {
+    width: 520px;
+    height: 370px;
+  }
+}
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    gap: 1.25rem;
+    height: auto;
+  }
+  .image-wrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    padding: 0;
+    .image,
+    img {
+      position: relative;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+  .content {
+    width: 100%;
   }
 }

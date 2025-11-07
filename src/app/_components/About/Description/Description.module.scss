@@ -1,14 +1,14 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding-left: 128px;
+  padding-left: 10vh;
   padding-top: 20vh;
   position: sticky;
 
   .title-wrapper {
     display: flex;
     gap: 1rem;
-    font-size: 80px;
+    font-size: clamp(4rem, 1.538rem + 3.846vw, 5rem);
     color: #866957;
     font-weight: 700;
 
@@ -17,8 +17,31 @@
     }
   }
 
+  /* Responsive reductions for title on narrower viewports */
+  @media (max-width: 1024px) {
+    .title-wrapper {
+      font-size: clamp(3rem, 0rem + 6.25vw, 4rem); /* ~56px */
+    }
+  }
+  @media (max-width: 768px) {
+    .title-wrapper {
+      font-size: clamp(1.95rem, 0.2rem + 5.833vw, 3rem); /* ~40px */
+      // padding-left: 24px;
+    }
+  }
+  @media (max-width: 480px) {
+    .title-wrapper {
+      font-size: 1.8rem; /* ~32px */
+      gap: 0.5rem;
+    }
+  }
+
   .content {
     width: 80%;
     margin-top: 72px;
+    /* Responsive typography: use the central type scale defined in globals.css */
+    font-size: var(--type-md);
+    line-height: 1.6;
+    color: inherit;
   }
 }

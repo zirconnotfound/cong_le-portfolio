@@ -27,13 +27,36 @@
       .title-line {
         display: block;
         position: relative;
-        font-size: 400px;
-        height: 400px;
-        line-height: 400px;
+        /* use variable so desktop matches previous 400px and scale down with overrides below */
+        font-size: 21rem;
+        height: 21rem;
+        line-height: 21rem;
         overflow-y: hidden;
 
         .title-text {
           height: 100%;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .title-line {
+          font-size: clamp(14rem, 0.356rem + 28.426vw, 21.675rem); /* ~200px */
+          height: clamp(14rem, 0.356rem + 28.426vw, 21.675rem);
+          line-height: clamp(14rem, 0.356rem + 28.426vw, 21.675rem);
+        }
+      }
+      @media (max-width: 768px) {
+        .title-line {
+          font-size: clamp(8rem, -2rem + 33.333vw, 14rem); /* ~128px */
+          height: clamp(8rem, -2rem + 33.333vw, 14rem);
+          line-height: clamp(8rem, -2rem + 33.333vw, 14rem);
+        }
+      }
+      @media (max-width: 480px) {
+        .title-line {
+          font-size: 8rem; /* ~88px */
+          height: 8rem;
+          line-height: 8rem;
         }
       }
     }
@@ -56,7 +79,7 @@
   // background: rgba(0, 0, 0, 0.75);
   // color: #fff;
   // border-radius: 6px;
-  font-size: 14px;
+  font-size: 0.875rem;
   border-radius: 200px;
   pointer-events: none;
   white-space: nowrap;
@@ -74,7 +97,7 @@
     justify-content: center;
 
     .tooltip-text {
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 700;
     }
   }

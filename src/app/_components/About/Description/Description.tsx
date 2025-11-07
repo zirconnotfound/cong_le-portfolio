@@ -31,7 +31,36 @@ const Description = () => {
     const init = async () => {
       await new Promise((r) => requestAnimationFrame(r));
       await new Promise((r) => requestAnimationFrame(r));
-      await new Promise((r) => setTimeout(r, 3500));
+
+      // run long delay only on the first initialization during THIS page load.
+      // Use an in-memory window-global flag + promise so:
+      // - a full page load / reload triggers the delay
+      // - client-side toggles (component mounts within same page) skip the delay
+      // - React Strict Mode double-mounts share a single promise and won't re-run the timer
+      const isClient = typeof window !== "undefined";
+      if (isClient) {
+        const doneKey = "__descriptionInitDone";
+        const promiseKey = "__descriptionInitPromise";
+        const globalAny = window as any;
+
+        const alreadyDone = !!globalAny[doneKey];
+        if (!alreadyDone) {
+          if (!globalAny[promiseKey]) {
+            // create the one-time delay promise and store it on window
+            globalAny[promiseKey] = new Promise<void>((resolve) => {
+              const delay = 3400;
+              setTimeout(() => {
+                try {
+                  globalAny[doneKey] = true;
+                } catch {}
+                resolve();
+              }, delay);
+            });
+          }
+          // wait for the one-time delay to complete (no-op if already resolved)
+          await globalAny[promiseKey];
+        }
+      }
       if (!mounted) return;
 
       if (scrollText && title) {
