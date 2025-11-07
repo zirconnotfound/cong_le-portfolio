@@ -9,39 +9,34 @@ import styles from "./Process.module.scss";
 import { useEffect, useRef } from "react";
 import ImageFrame from "./components/ImageFrame/ImageFrame";
 
-const images = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1920&q=80",
-];
-
 const processItems = [
   {
     number: "001",
     title: "Empathize",
-    img: "/img/process/1.webp",
+    img: "/img/process/empathy.png",
     text: "We learn, understand users, customer in order to approach their needs with maximum deliverable.",
   },
   {
     number: "002",
     title: "Ideate",
-    img: "/img/process/1.webp",
+    img: "/img/process/ideate.png",
     text: "We define objective, think and share ideas that feasible, desirable and viable to meet users need, expectation and emotions.",
   },
   {
     number: "003",
     title: "Create",
-    img: "/img/process/1.webp",
+    img: "/img/process/create.png",
     text: "Through research, wireframe and prototype, we bring visionary ideas. Each proposal generates a meaningful and lasting emotional impact.",
   },
   {
     number: "004",
     title: "Deliver",
-    img: "/img/process/1.webp",
+    img: "/img/process/deliver.png",
     text: "We observe customer comment react and deliver product with highest quality.",
   },
 ];
+
+const images = processItems.map((item) => item.img);
 
 const Process = () => {
   const listWrapperRef = useRef<HTMLDivElement>(null);

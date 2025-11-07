@@ -77,8 +77,10 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
             key={index}
             src={src}
             alt={`Image ${index + 1}`}
-            width={100}
-            height={100}
+            /* increase intrinsic size & quality to avoid browser upscaling a tiny image */
+            width={1920}
+            height={1080}
+            quality={90}
           />
         ))}
       </div>

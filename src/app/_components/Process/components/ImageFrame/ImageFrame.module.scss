@@ -16,7 +16,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      /* start hidden by clipping from the top; GSAP will animate clip-path to reveal */
       clip-path: inset(100% 0% 0% 0%);
+
+      /* ensure the underlying <img> produced by Next/Image fills the layer and
+         uses natural rendering (avoid CSS scaling of a tiny intrinsic image) */
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* leave image-rendering default for photos, but include fallback properties */
+        image-rendering: auto;
+        -webkit-optimize-contrast: crisp-edges;
+      }
     }
   }
 }
