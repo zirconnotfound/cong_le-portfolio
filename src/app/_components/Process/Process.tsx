@@ -3,7 +3,7 @@
 import ProcessItem from "./components/ProcessItem/ProcessItem";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
+import { initLenis } from "@/lib/lenis";
 import { sfuCentury } from "@/fonts";
 import styles from "./Process.module.scss";
 import { useEffect, useRef } from "react";
@@ -40,6 +40,7 @@ const images = processItems.map((item) => item.img);
 
 const Process = () => {
   const listWrapperRef = useRef<HTMLDivElement>(null);
+  const createdTriggersRef = useRef<any[]>([]);
 
   useEffect(() => {
     let mounted = true;
@@ -51,13 +52,12 @@ const Process = () => {
       if (!mounted) return;
 
       gsap.registerPlugin(ScrollTrigger);
-
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      initLenis();
       gsap.ticker.lagSmoothing(0);
 
       if (listWrapperRef.current) {
+        const pre = ScrollTrigger.getAll().slice();
+
         const sections = Array.from(
           listWrapperRef.current.children
         ) as HTMLElement[];
@@ -80,6 +80,9 @@ const Process = () => {
           tl.to(section, { y: 0, ease: "none" }, 0);
           tl.to(section, { y: -40, opacity: 0, ease: "power1.out" }, 0);
         });
+
+        const post = ScrollTrigger.getAll();
+        createdTriggersRef.current = post.filter((t) => !pre.includes(t));
       }
 
       ScrollTrigger.refresh();
@@ -89,7 +92,11 @@ const Process = () => {
 
     return () => {
       mounted = false;
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      createdTriggersRef.current.forEach((t) => {
+        try {
+          t.kill();
+        } catch {}
+      });
     };
   }, []);
 

@@ -10,7 +10,12 @@ import * as THREE from "three";
 import { useInView } from "react-intersection-observer";
 
 const NewLogo = ({ active }: { active: boolean }) => {
-  const logoRef = useRef<THREE.Group>(null);
+  const logoRef = useRef<THREE.Group | null>(null);
+  const { size } = useThree();
+  // responsive scale: desktop vs mobile
+  const mobileBreakpoint = 768;
+  const desktopScale = 1.2;
+  const mobileScale = 0.85;
 
   // rotation is now handled by an external RAF loop to work with frameloop='demand'
   useEffect(() => {
@@ -34,10 +39,13 @@ const NewLogo = ({ active }: { active: boolean }) => {
   }, [active]);
 
   useEffect(() => {
+    // set initial scale and update when canvas size changes
     if (logoRef.current) {
-      logoRef.current.scale.set(1.2, 1.2, 1.2);
+      const target =
+        size.width <= mobileBreakpoint ? mobileScale : desktopScale;
+      logoRef.current.scale.set(target, target, target);
     }
-  }, []);
+  }, [size.width]);
 
   return <Logo ref={logoRef} />;
 };

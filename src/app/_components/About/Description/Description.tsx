@@ -1,18 +1,10 @@
 import styles from "./Description.module.scss";
 import { sfuCentury, swiss } from "@/fonts";
 import gsap from "gsap";
-import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import { initLenis } from "@/lib/lenis";
 import Paragraph from "./components/Paragraph/Paragraph";
-
-// extend Window with our in-memory init flags to avoid using `any` casts
-declare global {
-  interface Window {
-    __descriptionInitDone?: boolean;
-    __descriptionInitPromise?: Promise<void>;
-  }
-}
 
 const text =
   "We're fueled by curiosity and creativity. We seek to improve the quality of the built environment with subtle, yet confident designs characterised by clean lines and forms linked inextricably with function. Each design is unique, crafted to add commercial, social and aesthetic value.";
@@ -20,13 +12,12 @@ const text =
 const Description = () => {
   const scrollTextRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
+  const createdTriggersRef = useRef<any[]>([]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    initLenis();
     gsap.ticker.lagSmoothing(0);
   }, []);
 
@@ -47,22 +38,30 @@ const Description = () => {
       // - React Strict Mode double-mounts share a single promise and won't re-run the timer
       const isClient = typeof window !== "undefined";
       if (isClient) {
-        const alreadyDone = !!window.__descriptionInitDone;
+        type DescriptionInitWindow = Window & {
+          __descriptionInitDone?: boolean;
+          __descriptionInitPromise?: Promise<void>;
+        };
+        const globalWindow = window as DescriptionInitWindow;
+
+        const alreadyDone = !!globalWindow.__descriptionInitDone;
         if (!alreadyDone) {
-          if (!window.__descriptionInitPromise) {
+          if (!globalWindow.__descriptionInitPromise) {
             // create the one-time delay promise and store it on window
-            window.__descriptionInitPromise = new Promise<void>((resolve) => {
-              const delay = 3400;
-              setTimeout(() => {
-                try {
-                  window.__descriptionInitDone = true;
-                } catch {}
-                resolve();
-              }, delay);
-            });
+            globalWindow.__descriptionInitPromise = new Promise<void>(
+              (resolve) => {
+                const delay = 3400;
+                setTimeout(() => {
+                  try {
+                    globalWindow.__descriptionInitDone = true;
+                  } catch {}
+                  resolve();
+                }, delay);
+              }
+            );
           }
           // wait for the one-time delay to complete (no-op if already resolved)
-          await window.__descriptionInitPromise;
+          await globalWindow.__descriptionInitPromise;
         }
       }
       if (!mounted) return;
@@ -70,6 +69,7 @@ const Description = () => {
       if (scrollText && title) {
         const yOffset = (title.offsetHeight / 3) * 2;
         const distance = 0.7 * viewHeight - title.offsetHeight;
+        const pre = ScrollTrigger.getAll().slice();
 
         const timeline = gsap.timeline({
           scrollTrigger: {
@@ -86,6 +86,9 @@ const Description = () => {
 
         timeline.to(scrollText, { y: yOffset });
 
+        const post = ScrollTrigger.getAll();
+        createdTriggersRef.current = post.filter((t) => !pre.includes(t));
+
         ScrollTrigger.refresh();
       }
     };
@@ -94,21 +97,27 @@ const Description = () => {
 
     return () => {
       mounted = false;
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      createdTriggersRef.current.forEach((t) => {
+        try {
+          t.kill();
+        } catch {}
+      });
     };
   }, []);
   return (
     <div
       className={`${styles["wrapper"]} animate-fade-in transition-all duration-700 ease-out`}
     >
-      <div className={`${styles["title-wrapper"]} ${sfuCentury.className}`}>
-        <p className={styles["scroll-text"]} ref={scrollTextRef}>
-          We
-        </p>
-        <div className={styles["title"]} ref={titleRef}>
-          <p className={styles["title-text"]}>think, find solution.</p>
-          <p className={styles["title-text"]}>create the exquisite.</p>
-          <p className={styles["title-text"]}>desire to grow</p>
+      <div className={styles["title-container"]}>
+        <div className={`${styles["title-wrapper"]} ${sfuCentury.className}`}>
+          <p className={styles["scroll-text"]} ref={scrollTextRef}>
+            We
+          </p>
+          <div className={styles["title"]} ref={titleRef}>
+            <p className={styles["title-text"]}>think, find solution.</p>
+            <p className={styles["title-text"]}>create the exquisite.</p>
+            <p className={styles["title-text"]}>desire to grow</p>
+          </div>
         </div>
       </div>
       <div className={`${styles["content"]} ${swiss.className}`}>

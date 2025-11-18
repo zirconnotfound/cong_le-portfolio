@@ -28,7 +28,7 @@ import Process from "./_components/Process/Process";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFadeout, setIsFadeout] = useState(false);
-  const [isBlack, setIsBlack] = useState(false);
+  const [isWhite, setIsWhite] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -138,7 +138,7 @@ export default function Home() {
         <RotatingLogo />
       </div>
 
-      {isLoading ? null : <NavBar isBlack={isBlack} />}
+      {isLoading ? null : <NavBar isWhite={isWhite} />}
       <div
         className={`items-center justify-items-center min-h-screen transition-opacity duration-700 ease-out relative w-full overflow-x-hidden
           ${isLoading ? "opacity-0" : "opacity-100"} relative z-20`}
@@ -150,7 +150,7 @@ export default function Home() {
       <div className="z-20 bg-white relative">
         <Works />
         <Process />
-        <Slogan onToggle={setIsBlack} />
+        <Slogan onToggle={setIsWhite} />
         <Footer />
       </div>
     </>

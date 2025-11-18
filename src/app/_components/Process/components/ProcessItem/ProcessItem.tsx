@@ -1,4 +1,5 @@
 import styles from "./ProcessItem.module.scss";
+import Image from "next/image";
 import { sfuCentury, swiss } from "@/fonts";
 
 type ProcessItemProps = {
@@ -22,13 +23,13 @@ const ProcessItem = (props: ProcessItemProps) => {
         </div>
         <div className={styles["mid-col"]}>
           <div className={styles["img-wrapper"]}>
-            {/* <Image
+            <Image
               src={props.img}
               alt={props.title}
               className={styles["img"]}
               width={2000}
               height={2000}
-            /> */}
+            />
           </div>
         </div>
         <div className={styles["right-col"]}>

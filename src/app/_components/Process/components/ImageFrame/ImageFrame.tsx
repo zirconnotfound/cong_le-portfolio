@@ -3,8 +3,8 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import Lenis from "lenis";
 import { useRef, useEffect } from "react";
+import { initLenis } from "@/lib/lenis";
 import styles from "./ImageFrame.module.scss";
 
 type ImageFrameProps = {
@@ -14,6 +14,7 @@ type ImageFrameProps = {
 
 const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const createdTriggersRef = useRef<any[]>([]);
 
   useEffect(() => {
     let mounted = true;
@@ -30,12 +31,12 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
       const yOffset = window.innerHeight * 0.1;
       const height = window.innerHeight;
 
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      initLenis();
       gsap.ticker.lagSmoothing(0);
 
       if (!containerRef.current) return;
+
+      const pre = ScrollTrigger.getAll().slice();
 
       const container = containerRef.current;
       const layers = Array.from(container.children) as HTMLElement[];
@@ -57,6 +58,9 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
         });
       });
 
+      const post = ScrollTrigger.getAll();
+      createdTriggersRef.current = post.filter((t) => !pre.includes(t));
+
       ScrollTrigger.refresh();
     };
 
@@ -64,9 +68,13 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
 
     return () => {
       mounted = false;
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      createdTriggersRef.current.forEach((t) => {
+        try {
+          t.kill();
+        } catch {}
+      });
     };
-  });
+  }, []);
 
   return (
     <div className={styles["scroll-container"]}>

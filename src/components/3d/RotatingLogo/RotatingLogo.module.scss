@@ -25,20 +25,24 @@
       aspect-ratio: 1363 / 363;
     }
   }
+
+  @media (max-width: 768px) {
+    height: 100vh;
+  }
 }
 
 /* responsive */
-@media (max-width: 1024px) {
-  .logo-container {
-    height: 90vh;
-  }
-  .webver {
-    top: 8vh;
-  }
-  .webver-image {
-    width: 95vw;
-  }
-}
+// @media (max-width: 1024px) {
+//   .logo-container {
+//     height: 90vh;
+//   }
+//   .webver {
+//     top: 8vh;
+//   }
+//   .webver-image {
+//     width: 95vw;
+//   }
+// }
 // @media (max-width: 768px) {
 //   .logo-container {
 //     position: relative;

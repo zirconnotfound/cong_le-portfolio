@@ -53,6 +53,11 @@
         .img {
           width: 80vw;
           height: auto;
+          display: none;
+
+          @media (max-width: 768px) {
+            display: block;
+          }
         }
       }
     }

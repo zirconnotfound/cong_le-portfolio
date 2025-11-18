@@ -43,26 +43,123 @@
 
 @media (max-width: 768px) {
   .navigation {
-    padding: 0.5rem 1rem 0;
-    font-size: 0.95rem;
-    height: 3.5rem;
-    gap: 8px;
+    display: none;
+  }
+}
+
+/* Mobile navigation: shown on small screens */
+.mobile {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: fixed;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 1200;
+    /* keep mobile controls reachable without interfering with page */
+    pointer-events: auto;
   }
 
-  /* collapse spacing and wrap links to two rows if needed */
-  .navigation {
-    flex-wrap: wrap;
+  .burger {
+    display: inline-flex;
+    flex-direction: column;
     justify-content: center;
+    position: relative;
+    gap: 6px;
+    width: 42px;
+    height: 42px;
+    padding: 6px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    align-items: center;
+    color: var(--nav-color, #fff);
+    z-index: 1300; /* sit above the mobile-nav panel */
+
+    &:focus-visible {
+      outline: 2px solid rgba(0, 0, 0, 0.12);
+      border-radius: 6px;
+    }
   }
-  .link {
-    margin: 6px 8px;
+
+  .burger-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 200ms ease, opacity 200ms ease;
+    transform-origin: center;
+  }
+
+  /* mobile nav panel that slides down from the top */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 320ms ease, opacity 320ms ease;
+    background: #866957;
+    padding-top: 2rem; /* leave space for the burger */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    min-height: 100vh;
+
+    .mobile-nav-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1100;
+    }
+  }
+
+  .mobile-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-nav .link {
+    padding: 0.5rem 1rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .mobile-nav .text {
+    display: inline-block;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--nav-text, #dbdbdb);
+  }
+
+  /* animate burger into an X when open */
+  .burger.open {
+    .burger-bar {
+      background: currentColor;
+    }
+    /* ensure the open button stays above the panel and has clear contrast */
+    z-index: 1301;
+    color: var(--nav-text, #fff);
+    .burger-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .burger-bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .burger-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
   }
 }
 
 /* keep existing modifiers */
-// .navigation.white {
-//   --text-color: #000000;
-// }
-// .navigation.black {
-//   --text-color: #e5e5e5;
-// }
+.burger.black {
+  color: #000;
+}
