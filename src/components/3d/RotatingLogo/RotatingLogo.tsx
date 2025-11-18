@@ -89,6 +89,7 @@ const RotatingLogo = () => {
           width={1363}
           height={363}
           className={styles["webver-image"]}
+          fetchPriority="high"
         />
       </div>
       {hasEntered && (

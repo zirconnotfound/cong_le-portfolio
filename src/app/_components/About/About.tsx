@@ -7,8 +7,7 @@ import Description from "./Description/Description";
 import Team from "./Team/Team";
 import { swiss, sfuCentury } from "@/fonts";
 import dynamic from "next/dynamic";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
-import { i } from "framer-motion/client";
+
 const MovingLogo = dynamic(
   () => import("@/components/3d/MovingLogo/MovingLogo"),
   { ssr: false, loading: () => null }

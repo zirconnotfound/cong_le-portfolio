@@ -69,7 +69,7 @@ const MovingLogo = ({ isClicked }: { isClicked: boolean }) => {
         if (unsubRot) unsubRot();
         if (unsubScale) unsubScale();
       };
-    }, [rotationSpring, scale, invalidate]);
+    }, [scale, invalidate]);
 
     return (
       <a.group rotation={rotationSpring as any}>

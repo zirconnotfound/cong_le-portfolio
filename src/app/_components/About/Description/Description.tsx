@@ -12,7 +12,7 @@ const text =
 const Description = () => {
   const scrollTextRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
-  const createdTriggersRef = useRef<any[]>([]);
+  const createdTriggersRef = useRef<ScrollTrigger[]>([]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

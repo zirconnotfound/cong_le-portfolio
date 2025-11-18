@@ -40,7 +40,7 @@ const images = processItems.map((item) => item.img);
 
 const Process = () => {
   const listWrapperRef = useRef<HTMLDivElement>(null);
-  const createdTriggersRef = useRef<any[]>([]);
+  const createdTriggersRef = useRef<ScrollTrigger[]>([]);
 
   useEffect(() => {
     let mounted = true;

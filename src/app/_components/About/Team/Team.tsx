@@ -88,7 +88,7 @@ const Team = () => {
       window.clearTimeout(id);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [teamIndex]);
 
   return (
     <div className={styles["wrapper"]}>

@@ -14,7 +14,7 @@ type ImageFrameProps = {
 
 const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const createdTriggersRef = useRef<any[]>([]);
+  const createdTriggersRef = useRef<ScrollTrigger[]>([]);
 
   useEffect(() => {
     let mounted = true;
@@ -74,7 +74,7 @@ const ImageFrame = ({ imgs, wrapperRef }: ImageFrameProps) => {
         } catch {}
       });
     };
-  }, []);
+  });
 
   return (
     <div className={styles["scroll-container"]}>
